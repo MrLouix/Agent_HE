@@ -28,7 +28,7 @@
 | Modèles | Pydantic v2, `pydantic-settings` + `.env` |
 | Base vectorielle | Chroma (local, persistant) |
 | Interface | Streamlit (local) |
-| Stockage | SQLite (historique, favoris, journal, file de validation) |
+| Stockage | SQLite (historique, favoris, journal d'usage, journal d'audit, file de validation) |
 | Qualité | `pytest`, `pytest-recording`, `ruff`, `mypy` |
 | CI | GitHub Actions (lint + typecheck + tests) |
 
@@ -89,9 +89,14 @@ Agent_HE/
 │   │   ├── scraper.py           # scraping éthique générique (robots.txt, délai, cache)
 │   │   ├── shops/               # un adaptateur par boutique
 │   │   └── compare.py
+│   ├── journal/
+│   │   ├── repository.py        # CRUD des entrées d'usage (SQLite)
+│   │   ├── stats.py             # agrégats par recette / HE, préférences olfactives
+│   │   ├── tolerance.py         # HE suspectes, seuils, propositions d'exclusion
+│   │   └── ranking.py           # classement personnalisé (après contrôles)
 │   ├── storage/
 │   │   ├── db.py
-│   │   ├── journal.py
+│   │   ├── audit.py             # journal d'audit (sources par réponse)
 │   │   └── favorites.py
 │   └── cli.py
 ├── app/
@@ -127,10 +132,20 @@ class Recette:        nom_recette; voie: Voie; huiles: list[DoseHE]; base_descri
                       base_volume_ml; usage; precautions: list[Precaution]; sources: list[str]
 class Fiche:          mode: Literal["validee", "publiee", "synthese", "refus", "aucune"];
                       recette: Recette | None; badges; avertissements; contradictions;
-                      he_a_eviter: list[str]; convention_gouttes_ml: int
+                      he_a_eviter: list[str]; convention_gouttes_ml: int;
+                      rappel_journal: str | None   # « d'après ton journal : … »
 class Produit:        boutique; nom; nom_latin; chemotype; origine; labels; volume_ml; prix;
                       prix_ml; url; date_releve
-class EntreeJournal:  id; horodatage; demande; sources; mode; controles_declenches
+class EntreeAudit:    id; horodatage; demande; sources; mode; controles_declenches
+
+# Journal d'usage
+class Tolerance(StrEnum):     AUCUNE, LEGERE, FORTE
+class EntreeUsage:    id; horodatage; recette_ref: str | None; melange_libre: list[DoseHE] | None;
+                      voie: Voie; personne: str = "moi"; efficacite: int | None  # 1-5, None = sans objet
+                      tolerance: Tolerance; description_reaction: str | None;
+                      odeur: int | None; contexte: str | None; notes: str | None
+class ExclusionPerso: he_id; date_ajout; motif; entrees_liees: list[id]
+class StatsHE:        he_id; nb_usages; efficacite_moy; odeur_moy; nb_reactions_legeres; nb_reactions_fortes
 ```
 
 ---
@@ -178,7 +193,8 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
   - union des précautions sources + drapeaux ;
   - règle de croisement (table de sécurité = seconde référence) ;
   - contradictions ⇒ valeur la plus restrictive + signalement ;
-  - recette verbatim hors plafond ⇒ **rejet** (pas de correction).
+  - recette verbatim hors plafond ⇒ **rejet** (pas de correction) ;
+  - HE de la liste d'exclusion personnelle ⇒ recette écartée avec motif (interface `exclusions: set[he_id]` dès cette phase, alimentée par le journal en phase 7).
 - [ ] `safety/traceability.py` : chaque HE/dose/précaution doit être présente dans le texte d'une source citée (via le référentiel pour les noms) ; sinon retirée.
 - [ ] `assert_fiche_sure(fiche)` : validateur final réutilisé partout.
 
@@ -189,6 +205,7 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
 - Deux HE chacune sous leur plafond mais total > plafond total ⇒ rejet.
 - HE absente de la table de sécurité ⇒ aucun dosage.
 - HE injectée sans source ⇒ retirée.
+- HE dans les exclusions personnelles ⇒ recette écartée.
 
 ---
 
@@ -222,11 +239,11 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
 
 Implémente l'arbre de décision de la spec §6.
 
-- [ ] `agent.py` : contrôle sécurité initial **avant** toute recherche ⇒ `analyze` ⇒ `plan` ⇒ `retrieve` (corpus puis web) ⇒ `extract` ⇒ `normalize` ⇒ `match` / `synthesize` ⇒ `checks` ⇒ `Fiche` ⇒ journal.
-- [ ] `match.py` : filtres stricts (besoin, voie, profil) + similarité ≥ seuil (configurable ; calibré en phase 8). 1a corpus prioritaire sur 1b web ; 1b ⇒ ajout à la file de validation.
+- [ ] `agent.py` : contrôle sécurité initial **avant** toute recherche ⇒ `analyze` ⇒ `plan` ⇒ `retrieve` (corpus puis web) ⇒ `extract` ⇒ `normalize` ⇒ `match` / `synthesize` ⇒ `checks` ⇒ classement personnalisé ⇒ `Fiche` ⇒ journal d'audit.
+- [ ] `match.py` : filtres stricts (besoin, voie, profil) + similarité ≥ seuil (configurable ; calibré en phase 9). 1a corpus prioritaire sur 1b web ; 1b ⇒ ajout à la file de validation.
 - [ ] `synthesize.py` : le LLM ne reçoit que les doses extraites normalisées et renvoie une sélection avec `sources` ; quantités recalculées par `doses.py` ; avertissement permanent.
 - [ ] Bascule : verbatim rejetée ⇒ synthèse ; synthèse non conforme ⇒ `mode="aucune"` avec explication.
-- [ ] `storage/journal.py` : une entrée par réponse.
+- [ ] `storage/audit.py` : une entrée par réponse.
 
 **Acceptation** : tests d'intégration sur fixtures couvrant 1a, 1b, 2, refus, verbatim surdosée ⇒ synthèse, contradiction, aucune recette sûre. Chaque fiche passe `assert_fiche_sure`.
 
@@ -237,7 +254,7 @@ Implémente l'arbre de décision de la spec §6.
 - [ ] Bandeau sécurité permanent.
 - [ ] Barre latérale : besoin, voie(s), questionnaire (obligatoire avant recherche).
 - [ ] Chat libre ; si le filet mots-clés détecte un risque non coché ⇒ demande de confirmation.
-- [ ] Onglets : Fiche (% / ml / gouttes + convention), Sources (badges), Produits, Historique, Favoris, File de validation.
+- [ ] Onglets : Fiche (% / ml / gouttes + convention), Sources (badges), Produits, Journal (complété en phase 7), Historique, Favoris, File de validation.
 - [ ] Refus explicatif : motif + HE à éviter + renvoi vers un professionnel.
 - [ ] Export Markdown (PDF optionnel).
 - [ ] Progression par étape (`st.status`), messages d'erreur clairs (clé API absente, aucune source).
@@ -246,7 +263,36 @@ Implémente l'arbre de décision de la spec §6.
 
 ---
 
-### Phase 7 — Comparatif produits, boutiques HE (~1,5 j)
+### Phase 7 — Journal d'usage (~1,5 j)
+
+Implémente la spec §11.
+
+- [ ] `journal/repository.py` : tables `usage` et `exclusion_perso` ; création, modification (réaction apparue plus tard), suppression.
+- [ ] Saisie :
+  - bouton « J'ai utilisé cette recette » sur fiche et favori ⇒ formulaire pré-rempli, champs obligatoires seuls visibles ;
+  - mélange libre : HE + quantités, normalisées via `referentiel/huiles.py` ;
+  - rappel des utilisations récentes sans retour ;
+  - commande CLI `agent-he journal add`.
+- [ ] `journal/stats.py` : agrégats par recette et par HE ; préférences olfactives (HE appréciées / détestées).
+- [ ] `journal/tolerance.py` :
+  - HE suspectes = HE présentes dans les mélanges avec réaction et absentes des mélanges bien tolérés (classées par fréquence) ;
+  - seuil configurable (défaut : 1 réaction forte ou 2 légères sur la même HE) ⇒ **proposition** d'exclusion, jamais d'ajout automatique ;
+  - ajout / retrait d'exclusion uniquement sur confirmation.
+- [ ] `journal/ranking.py` : réordonne les recettes **déjà conformes** (score = pertinence + bonus/malus journal, bornés) ; ne réintroduit jamais une recette écartée.
+- [ ] Branchement pipeline : `checks` reçoit les exclusions personnelles ; `ranking` s'applique après `checks` ; `Fiche.rappel_journal` renseigné.
+- [ ] File de validation : affichage des retours du journal pour la recette candidate.
+- [ ] Onglet Journal : saisie, historique filtrable, préférences, réactions, liste d'exclusion.
+
+**Acceptation (tests obligatoires)** :
+- Le journal ne peut pas relever un plafond : une recette surdosée avec 10 retours 5/5 reste rejetée.
+- Une HE exclue personnellement n'apparaît dans aucune fiche, y compris en synthèse.
+- Le seuil de tolérance génère une proposition, pas une exclusion, tant que non confirmé.
+- Le journal n'apparaît jamais dans `Recette.sources` ni dans la traçabilité.
+- Calcul des HE suspectes vérifié sur un jeu d'entrées connu.
+
+---
+
+### Phase 8 — Comparatif produits, boutiques HE (~1,5 j)
 
 - [ ] `data/boutiques.yaml` : pour chaque boutique (Aroma-Zone, Comptoir des Huiles, Compagnie des Sens, Puressentiel, Aesculape…) : URL, accès (API / flux / scraping), CGU vérifiées (oui/non + date), délai entre requêtes.
 - [ ] `products/scraper.py` — **scraping éthique** :
@@ -264,10 +310,10 @@ Implémente l'arbre de décision de la spec §6.
 
 ---
 
-### Phase 8 — Évaluation (continu)
+### Phase 9 — Évaluation (continu)
 
-- [ ] `tests/eval/cas.yaml` : ~30 cas (spec §11), dont les cas pièges.
-- [ ] Critères **bloquants** en CI (sur fixtures) : 0 dosage pour profil exclu, 0 dépassement de plafond, 0 voie orale, 0 HE non tracée.
+- [ ] `tests/eval/cas.yaml` : ~30 cas (spec §12), dont les cas pièges et les cas liés au journal.
+- [ ] Critères **bloquants** en CI (sur fixtures) : 0 dosage pour profil exclu, 0 dépassement de plafond, 0 voie orale, 0 HE non tracée, 0 HE exclue personnellement, 0 relâchement dû au journal.
 - [ ] Mode `@pytest.mark.live` lancé à la main pour évaluer sur le web réel.
 - [ ] Calibrage du seuil de correspondance de la priorité 1.
 - [ ] Relecture par un aromathérapeute si possible ; corrections reportées dans `securite.yaml` et le corpus.
@@ -278,7 +324,7 @@ Implémente l'arbre de décision de la spec §6.
 
 | Niveau | Contenu | Réseau |
 |---|---|---|
-| Unitaire | referentiel, safety, doses, reliability, compare, scraper (robots) | Non |
+| Unitaire | referentiel, safety, doses, reliability, journal (stats, tolérance, classement), compare, scraper (robots) | Non |
 | Intégration | pipeline avec `FakeLLM` / `FakeSearch` + fixtures | Non |
 | UI | `AppTest` Streamlit, agent simulé | Non |
 | Évaluation | `tests/eval`, cas pièges bloquants sur fixtures ; mode live manuel | Live : oui |
@@ -296,12 +342,13 @@ Implémente l'arbre de décision de la spec §6.
 | 4 Corpus validé + file de validation | 1 j |
 | 5 Pipeline complet | 1,5 j |
 | 6 Streamlit | 1 j |
-| 7 Produits boutiques HE | 1,5 j |
-| 8 Évaluation | continu |
+| 7 Journal d'usage | 1,5 j |
+| 8 Produits boutiques HE | 1,5 j |
+| 9 Évaluation | continu |
 
-Total : ~10 jours de code. **Le remplissage des données de référence (table de sécurité, corpus) prendra en pratique plus de temps que le code** et avance en parallèle.
+Total : ~11,5 jours de code. **Le remplissage des données de référence (table de sécurité, corpus) prendra en pratique plus de temps que le code** et avance en parallèle.
 
-Premier prototype utilisable : fin de la phase 6 (corpus + sécurité + interface), même avec un corpus réduit.
+Premier prototype utilisable : fin de la phase 6 (corpus + sécurité + interface), même avec un corpus réduit. Le journal (phase 7) vient juste après, pour accumuler des retours le plus tôt possible.
 
 ---
 
@@ -312,3 +359,4 @@ Premier prototype utilisable : fin de la phase 6 (corpus + sécurité + interfac
 3. Convention gouttes/ml par défaut (selon tes compte-gouttes).
 4. Boutiques à intégrer en premier, après vérification de leurs CGU et `robots.txt`.
 5. Seuil de correspondance de la priorité 1 : à calibrer sur le jeu d'évaluation.
+6. Seuil de proposition d'exclusion personnelle (défaut : 1 réaction forte ou 2 légères) et poids du journal dans le classement.

@@ -39,16 +39,19 @@ flowchart LR
     F --> P[Comparatif produits<br/>boutiques HE]
     F --> U[Interface]
     P --> U
+    U -. retours .-> J[(Journal d'usage)]
+    J -. exclusions + préférences .-> V
     W -. recettes candidates .-> Q[File de validation]
     Q -. après relecture .-> K
 ```
 
-**Les 5 briques :**
+**Les 6 briques :**
 1. **Données de référence** (codées, versionnées) : référentiel des HE, table de sécurité, liste des domaines, corpus de recettes validées.
 2. **Interface** : formulaire, questionnaire de sécurité, chat, fiches.
 3. **Cerveau LLM** : comprend la demande, planifie les recherches, extrait et met en forme. **Il ne décide jamais de la sécurité et ne fait aucun calcul.**
 4. **Connecteurs** : recherche web filtrée, récupération de pages, scraping éthique des boutiques HE.
 5. **Contrôles déterministes** (code) : profils, plafonds, traçabilité, calcul des doses, contradictions.
+6. **Journal d'usage** : tes retours d'expérience, qui personnalisent le classement et peuvent rendre l'outil plus restrictif pour toi.
 
 ---
 
@@ -63,7 +66,7 @@ flowchart LR
 | Modèles de données | Pydantic v2 | — |
 | Base vectorielle | Chroma (local) | Qdrant |
 | Interface | Streamlit (local) | Gradio |
-| Stockage (historique, favoris, journal, file de validation) | SQLite | — |
+| Stockage (historique, favoris, journal d'usage, journal d'audit, file de validation) | SQLite | — |
 
 ---
 
@@ -141,7 +144,9 @@ Réalité à garder en tête : les sources institutionnelles couvrent **peu d'HE
 6. **Contrôles déterministes** (code) : traçabilité, croisement, plafonds, drapeaux, profils, contradictions.
 7. **Fiche** : recette, doses en % et en ml, précautions, sources cliquables avec badges, avertissements.
 8. **Comparatif produits** (après la fiche, puisqu'il dépend des HE retenues).
-9. **Journal** : sources utilisées, mode, contrôles déclenchés.
+9. **Journal d'audit** : sources utilisées, mode, contrôles déclenchés.
+
+Le **journal d'usage** (§11) intervient aux étapes 6 (exclusions personnelles) et 7 (classement et rappel de tes retours).
 
 ---
 
@@ -175,7 +180,7 @@ Réalité à garder en tête : les sources institutionnelles couvrent **peu d'HE
 - **1a. Corpus validé** : badge « ✅ Recette validée — source : [site] ».
 - **1b. Recette publiée trouvée sur le web** : badge « 📄 Recette publiée — source : [site] (non relue) » ; elle est ajoutée à la file de validation.
 - La recette est reprise **sans modification**. **Elle passe quand même tous les contrôles** (§6, contrôles communs). Une recette verbatim qui dépasse un plafond **n'est pas corrigée : elle est rejetée** (on bascule en priorité 2 ou on ne propose rien).
-- Correspondance : filtres stricts (besoin, voie, compatibilité du profil) + similarité sémantique au-dessus d'un seuil, **calibré sur le jeu d'évaluation** (§11).
+- Correspondance : filtres stricts (besoin, voie, compatibilité du profil) + similarité sémantique au-dessus d'un seuil, **calibré sur le jeu d'évaluation** (§12).
 
 ### 🥈 Priorité 2 — Synthèse tracée (avec avertissement)
 
@@ -187,7 +192,7 @@ Si aucune recette existante ne convient :
 
 ### Contrôles communs aux deux priorités (code)
 
-1. Profil compatible avec chaque HE (`interdits_profils`).
+1. Profil compatible avec chaque HE (`interdits_profils`) et aucune HE de la **liste d'exclusion personnelle** (§11).
 2. Concentration de chaque HE ≤ plafond de la voie ; **total du mélange** ≤ plafond global de la voie.
 3. Précautions = **union** des précautions des sources + drapeaux de la table de sécurité.
 4. Traçabilité : toute HE, dose ou précaution non rattachée à une source est **retirée** (jamais « corrigée »).
@@ -274,23 +279,71 @@ Les décisions de sécurité (profil, plafonds, refus) ne figurent pas dans le p
 - Onglets :
   - **Fiche** : HE (nom, nom latin, chémotype), % / ml / gouttes, base, usage, précautions, avertissements, contradictions ;
   - **Sources** : liens cliquables avec badges de confiance ;
-  - **Produits** : comparatif boutiques HE (§12) ;
+  - **Produits** : comparatif boutiques HE (§13) ;
+  - **Journal** : saisie rapide d'un retour, historique par recette et par HE, préférences olfactives, réactions et liste d'exclusion personnelle (§11) ;
   - **Historique** et **Favoris** ;
   - **File de validation** : recettes web candidates à relire et valider (ajout au corpus) ou rejeter.
 - Export de la fiche (Markdown ou PDF).
 
 ---
 
-## 11. Évaluation
+## 11. Journal d'usage et retours
+
+Objectif : capitaliser sur **ton** expérience — ce qui fonctionne pour toi, ce que tu tolères, ce que tu aimes sentir. C'est l'information qu'aucun site ne peut te donner.
+
+### 11.1 Contenu d'une entrée
+
+| Champ | Obligatoire | Détail |
+|---|---|---|
+| Date et heure | oui | par défaut : maintenant |
+| Recette | oui | fiche, favori ou **mélange libre** (HE + quantités, normalisées via le référentiel §3.1) |
+| Voie | oui | reprise de la recette |
+| Personne concernée | non | texte libre (par défaut : moi) |
+| Efficacité | oui | 1 à 5, ou « sans objet » (usage plaisir) |
+| Tolérance | oui | aucune réaction / réaction légère / réaction forte + description (rougeur, démangeaison, mal de tête, gêne respiratoire…) |
+| Appréciation de l'odeur | non | 1 à 5 |
+| Contexte | non | besoin visé, moment, durée |
+| Notes | non | texte libre |
+
+### 11.2 Saisie
+
+- Bouton « J'ai utilisé cette recette » sur chaque fiche et chaque favori ; formulaire pré-rempli.
+- Saisie en moins de 30 secondes : seuls les champs obligatoires sont demandés, le reste est repliable.
+- L'interface rappelle les utilisations récentes sans retour (ex. diffusion de la veille).
+- Une entrée peut être modifiée ultérieurement (ex. réaction apparue le lendemain).
+
+### 11.3 Exploitation
+
+- **Historique** par recette et par HE : nombre d'utilisations, efficacité moyenne, appréciation de l'odeur, réactions.
+- **Préférences olfactives** : HE et recettes appréciées ou détestées, affichées dans l'onglet Journal.
+- **Classement personnalisé** : parmi les recettes **déjà conformes**, celles que tu as bien notées et celles qui contiennent tes HE préférées remontent ; celles mal notées ou à l'odeur détestée descendent. Sur la fiche : « d'après ton journal : utilisée 4 fois, efficacité 4/5 ».
+- **Signal de tolérance** :
+  - toute réaction associée à une HE est rappelée sur les fiches qui la contiennent (« ⚠️ réaction légère notée le … avec ce mélange ») ;
+  - pour un mélange ayant provoqué une réaction, l'outil indique les **HE suspectes** (communes aux mélanges ayant causé des réactions, absentes de ceux bien tolérés) ;
+  - au-delà d'un seuil (par défaut : 1 réaction forte ou 2 réactions légères impliquant la même HE), l'outil **propose** d'ajouter l'HE à la **liste d'exclusion personnelle**. L'ajout et le retrait sont toujours confirmés par toi.
+- **Liste d'exclusion personnelle** : traitée par le code comme un interdit de profil (§6, contrôles communs) ; une recette qui en contient une est écartée, avec le motif affiché.
+- **Aide à la validation** : quand tu valides une recette candidate (§3.3), ses retours dans le journal sont affichés pour t'aider à décider.
+
+### 11.4 Règles
+
+1. **Le journal ne peut que restreindre** : il ne relève jamais un plafond, ne lève jamais une contre-indication, n'autorise jamais un profil exclu. Une bonne tolérance n'est pas une preuve de sécurité.
+2. **Le journal n'est pas une source** : il n'apparaît jamais dans les sources citées et ne permet pas de tracer une HE ou une dose. Une bonne note ne transforme pas une recette publiée en recette validée : la validation reste une décision explicite.
+3. Le classement personnalisé n'intervient **qu'après** les contrôles de sécurité ; il ordonne, il ne filtre pas en faveur d'une recette non conforme.
+4. Tous les calculs (moyennes, HE suspectes, seuils) sont faits par le code.
+
+---
+
+## 12. Évaluation
 
 - Jeu de cas `tests/eval/` (~30 demandes) : besoins courants (sommeil, stress, digestion, peau, ambiance) **et cas pièges** (enceinte, enfant de 4 ans, épilepsie, traitement anticoagulant, demande d'ingestion, demande pour un chat, HE inexistante, recette web surdosée, sources contradictoires).
-- Critères **bloquants** : 0 dosage pour un profil exclu ; 0 dépassement de plafond ; 0 voie orale ; 0 HE non tracée.
+- Cas liés au journal : HE de la liste d'exclusion personnelle proposée ; journal plein de retours positifs sur une recette surdosée.
+- Critères **bloquants** : 0 dosage pour un profil exclu ; 0 dépassement de plafond ; 0 voie orale ; 0 HE non tracée ; 0 HE exclue personnellement ; 0 relâchement de contrôle dû au journal.
 - Critères suivis : % de fiches en priorité 1, % d'éléments tracés, pertinence du seuil de correspondance.
 - Relecture de fiches par un aromathérapeute si possible ; corrections reportées dans la table de sécurité et le corpus.
 
 ---
 
-## 12. Comparaison produits (boutiques HE)
+## 13. Comparaison produits (boutiques HE)
 
 - Sources : **boutiques spécialisées en HE** uniquement (Aroma-Zone, Comptoir des Huiles, Compagnie des Sens, Puressentiel, Aesculape…).
 - Accès par API ou flux produit si disponible ; sinon **scraping éthique** :
@@ -304,7 +357,7 @@ Les décisions de sécurité (profil, plafonds, refus) ne figurent pas dans le p
 
 ---
 
-## 13. Garde-fous (non négociables)
+## 14. Garde-fous (non négociables)
 
 | Règle | Implémentation |
 |---|---|
@@ -316,11 +369,12 @@ Les décisions de sécurité (profil, plafonds, refus) ne figurent pas dans le p
 | Contradictions | Valeur la plus restrictive + signalement |
 | Calculs | Code uniquement, en %, convention gouttes/ml affichée |
 | Injection de consignes | Contenu web traité comme donnée ; LLM limité à l'extraction structurée |
-| Journal | Sources, mode et contrôles déclenchés pour chaque réponse |
+| Journal d'audit | Sources, mode et contrôles déclenchés pour chaque réponse |
+| Journal d'usage | Ne peut que **restreindre** (exclusions personnelles) ; ne relève jamais un plafond et n'est jamais cité comme source |
 
 ---
 
-## 14. Mise en œuvre
+## 15. Mise en œuvre
 
 Le plan détaillé est dans [`plan.md`](./plan.md). Points structurants :
 1. Les **données de référence** (référentiel HE, table de sécurité, premières recettes validées) sont le principal chantier et démarrent dès le début.
@@ -348,4 +402,5 @@ Les sujets volontairement écartés pour cet usage personnel sont listés dans [
 | Doctissimo en liste blanche, boutiques non distinguées | 4 niveaux de confiance, sources commerciales identifiées |
 | Comparatif via grande plateforme e-commerce | Boutiques HE spécialisées uniquement, scraping éthique |
 | Pas d'évaluation | Jeu de cas avec critères bloquants |
+| — | Journal d'usage : retours, préférences, exclusions personnelles |
 | Pas de protection contre l'injection de consignes | Contenu web traité comme donnée |
