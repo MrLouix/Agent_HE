@@ -154,10 +154,10 @@ class StatsHE:        he_id; nb_usages; efficacite_moy; odeur_moy; nb_reactions_
 
 ### Phase 0 — Socle (½ j)
 
-- [ ] `pyproject.toml`, `ruff`, `mypy --strict` sur `src/`, `.gitignore` (`.env`, `data/chroma/`, `*.sqlite`, cache).
-- [ ] `config.py`, `.env.example`.
-- [ ] `models.py` + tests de validation (ex. `Voie` refuse « orale »).
-- [ ] GitHub Actions : lint, typecheck, tests.
+- [x] `pyproject.toml`, `ruff`, `mypy --strict` sur `src/`, `.gitignore` (`.env`, `data/chroma/`, `*.sqlite`, cache).
+- [x] `config.py`, `.env.example`.
+- [x] `models.py` + tests de validation (ex. `Voie` refuse « orale »).
+- [x] GitHub Actions : lint, typecheck, tests.
 
 **Acceptation** : CI verte.
 
