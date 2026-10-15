@@ -6,7 +6,10 @@ from typing import Annotated
 
 import typer
 
-from agent_he.config import get_settings
+from agent_he.config import Settings, get_settings
+from agent_he.export import fiche_markdown
+from agent_he.models import Demande, Questionnaire, TrancheAge, Voie
+from agent_he.pipeline.agent import Agent, Reglages
 from agent_he.referentiel.huiles import charger_referentiel
 from agent_he.referentiel.rapport import rapport_markdown
 from agent_he.referentiel.securite import (
@@ -127,6 +130,77 @@ def securite_rapport(
     chemin.parent.mkdir(parents=True, exist_ok=True)
     chemin.write_text(texte, encoding="utf-8")
     typer.echo(f"Rapport écrit : {chemin}")
+
+
+def construire_agent(reglages: Settings) -> Agent:
+    """Agent branché sur les vrais services (Mistral, Tavily)."""
+    from agent_he.llm.mistral import MistralLLM
+    from agent_he.referentiel.securite import charger_table
+    from agent_he.search.fetch import RecuperateurHttp
+    from agent_he.search.reliability import charger_fiabilite
+    from agent_he.search.tavily import TavilySearch
+
+    if reglages.mistral_api_key is None or reglages.tavily_api_key is None:
+        raise _erreur(
+            "Clés d'API absentes : renseigne MISTRAL_API_KEY et TAVILY_API_KEY dans .env "
+            "(voir .env.example)."
+        )
+    dossier = reglages.data_dir
+    return Agent(
+        llm=MistralLLM(reglages.mistral_api_key.get_secret_value(), reglages.mistral_model),
+        recherche=TavilySearch(reglages.tavily_api_key.get_secret_value()),
+        recuperateur=RecuperateurHttp(),
+        table=charger_table(dossier),
+        referentiel=charger_referentiel(dossier),
+        fiabilite=charger_fiabilite(dossier),
+        reglages=Reglages(
+            convention_gouttes_ml=reglages.convention_gouttes_ml,
+            recherche_ouverte=reglages.recherche_ouverte,
+            max_resultats=reglages.max_resultats,
+        ),
+    )
+
+
+@app.command("ask")
+def ask(
+    besoin: Annotated[str, typer.Argument(help="Besoin, ex. « mélange pour dormir ».")],
+    voie: Annotated[list[Voie], typer.Option(help="Voie(s) d'utilisation.")],
+    age: Annotated[TrancheAge, typer.Option(help="Tranche d'âge de la personne concernée.")],
+    grossesse: Annotated[bool, typer.Option(help="Grossesse ou allaitement.")] = False,
+    epilepsie: Annotated[bool, typer.Option(help="Épilepsie.")] = False,
+    asthme: Annotated[bool, typer.Option(help="Asthme.")] = False,
+    traitement: Annotated[bool, typer.Option(help="Traitement médicamenteux en cours.")] = False,
+    allergies: Annotated[bool, typer.Option(help="Allergies connues / peau sensible.")] = False,
+    hormonal: Annotated[bool, typer.Option(help="Pathologie hormonodépendante.")] = False,
+    texte: Annotated[str, typer.Option(help="Précisions libres.")] = "",
+    confirme: Annotated[
+        bool, typer.Option(help="Confirme le questionnaire malgré un risque détecté dans le texte.")
+    ] = False,
+) -> None:
+    """Cherche une recette sûre pour un besoin (questionnaire de sécurité obligatoire)."""
+    from agent_he.safety.keywords import charger_filet
+
+    reglages = get_settings()
+    questionnaire = Questionnaire(
+        age=age,
+        grossesse_allaitement=grossesse,
+        epilepsie=epilepsie,
+        asthme=asthme,
+        traitement=traitement,
+        allergies=allergies,
+        pathologie_hormonale=hormonal,
+    )
+    demande = Demande(besoin=besoin, voies=voie, texte_libre=texte, questionnaire=questionnaire)
+    risques = charger_filet(reglages.data_dir).risques_non_coches(
+        f"{besoin} {texte}", questionnaire
+    )
+    if risques and not confirme:
+        raise _erreur(
+            f"Risque détecté dans ta demande mais non coché : {', '.join(risques)}. "
+            "Complète le questionnaire, ou relance avec --confirme si c'est sans objet."
+        )
+    reponse = construire_agent(reglages).repondre(demande)
+    typer.echo(fiche_markdown(reponse.fiche, reponse.sources))
 
 
 if __name__ == "__main__":  # pragma: no cover

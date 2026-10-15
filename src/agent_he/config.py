@@ -43,6 +43,10 @@ class Settings(BaseSettings):
     # Calcul des doses (spec §7) : nombre de gouttes par ml, affiché sur chaque fiche
     convention_gouttes_ml: int = Field(default=20, gt=0, le=100)
 
+    # Recherche web : liste blanche, puis passage ouvert optionnel (sources « non vérifié »)
+    recherche_ouverte: bool = False
+    max_resultats: int = Field(default=5, ge=1, le=20)
+
     # Priorité 1 : seuil de similarité pour retenir une recette existante (spec §6)
     seuil_correspondance: float = Field(default=0.8, ge=0.0, le=1.0)
 

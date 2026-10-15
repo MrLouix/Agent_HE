@@ -214,13 +214,13 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
 
 ### Phase 3 — LLM, recherche et CLI (~1 j)
 
-- [ ] `llm/base.py`, `llm/mistral.py` : `complete(messages, schema)` ; validation Pydantic + 1 nouvel essai si JSON invalide.
-- [ ] `llm/prompts.py` : prompt système (spec §9) ; les pages sont encadrées comme données.
-- [ ] `search/tavily.py` : passage liste blanche, puis passage ouvert optionnel marqué `NON_VERIFIE`.
-- [ ] `search/fetch.py` : extraction du texte principal.
-- [ ] `search/reliability.py` : domaine ⇒ `Confiance`.
-- [ ] `pipeline/extract.py` + `normalize.py` : pages ⇒ `Recette` normalisées ; HE non reconnue ⇒ exclue.
-- [ ] `cli.py` : `agent-he ask "mélange pour dormir" --voie diffusion`.
+- [x] `llm/base.py`, `llm/mistral.py` : `complete(messages, schema)` ; validation Pydantic + 1 nouvel essai si JSON invalide.
+- [x] `llm/prompts.py` : prompt système (spec §9) ; les pages sont encadrées comme données.
+- [x] `search/tavily.py` : passage liste blanche, puis passage ouvert optionnel marqué `NON_VERIFIE`.
+- [x] `search/fetch.py` : extraction du texte principal.
+- [x] `search/reliability.py` : domaine ⇒ `Confiance`.
+- [x] `pipeline/extract.py` + `normalize.py` : pages ⇒ `Recette` normalisées ; HE non reconnue ⇒ exclue.
+- [x] `cli.py` : `agent-he ask "mélange pour dormir" --voie diffusion`.
 
 **Acceptation** :
 - Sur fixtures, toute URL citée provient des résultats de recherche.
