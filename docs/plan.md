@@ -297,15 +297,15 @@ Implémente la spec §11.
 
 ### Phase 8 — Comparatif produits, boutiques HE (~1,5 j)
 
-- [ ] `data/boutiques.yaml` : pour chaque boutique (Aroma-Zone, Comptoir des Huiles, Compagnie des Sens, Puressentiel, Aesculape…) : URL, accès (API / flux / scraping), CGU vérifiées (oui/non + date), délai entre requêtes.
-- [ ] `products/scraper.py` — **scraping éthique** :
+- [x] `data/boutiques.yaml` (CGU **à vérifier** : toutes les boutiques sont désactivées tant que `cgu_verifiees` est faux) : pour chaque boutique (Aroma-Zone, Comptoir des Huiles, Compagnie des Sens, Puressentiel, Aesculape…) : URL, accès (API / flux / scraping), CGU vérifiées (oui/non + date), délai entre requêtes.
+- [x] `products/scraper.py` — **scraping éthique** :
   - lecture et respect de `robots.txt` (`urllib.robotparser`) ;
   - refus de scraper une boutique dont les CGU ne sont pas marquées comme vérifiées ;
   - délai minimal entre requêtes par domaine, User-Agent identifiable ;
   - cache local des pages produit.
-- [ ] `products/shops/<boutique>.py` : un adaptateur par boutique (sélecteurs HTML), avec fixtures HTML enregistrées.
-- [ ] `products/compare.py` : parsing du volume ⇒ prix/ml ; rapprochement avec le référentiel HE (nom latin, chémotype) ; tri qualité puis prix/ml.
-- [ ] Carte UI : `Nom — nom latin — chémotype — origine — prix/ml — lien`.
+- [x] `products/shops/jsonld.py` : adaptateur commun schema.org (JSON-LD) au lieu de sélecteurs HTML par boutique ; fixtures synthétiques par boutique (à remplacer par des pages enregistrées après vérification des CGU).
+- [x] `products/compare.py` : parsing du volume ⇒ prix/ml ; rapprochement avec le référentiel HE (nom latin, chémotype) ; tri qualité puis prix/ml.
+- [x] Carte UI : `Nom — nom latin — chémotype — origine — prix/ml — lien`.
 
 **Acceptation** :
 - Le scraper ne fait aucune requête vers un chemin interdit par un `robots.txt` de test.

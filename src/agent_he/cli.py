@@ -339,6 +339,23 @@ def journal_exclusions() -> None:
         typer.echo(f"{e.he_id} — {e.motif} (depuis le {e.date_ajout:%d/%m/%Y})")
 
 
+@app.command("produits")
+def produits(he: Annotated[str, typer.Argument(help="HE, ex. « lavande fine ».")]) -> None:
+    """Compare les produits d'une HE dans les boutiques actives (CGU vérifiées)."""
+    reglages = get_settings()
+    he_id = charger_referentiel(reglages.data_dir).normaliser(he)
+    if he_id is None:
+        raise _erreur(f"HE inconnue ou ambiguë : {he}")
+    comparateur = services.construire_comparateur(reglages)
+    if not comparateur.boutiques:
+        raise _erreur("Aucune boutique active : vérifie les CGU et complète data/boutiques.yaml.")
+    resultats, erreurs = comparateur.comparer(he_id)
+    for p in resultats:
+        typer.echo(p.carte())
+    for erreur in erreurs:
+        typer.secho(f"⚠️  {erreur}", fg=typer.colors.YELLOW)
+
+
 def construire_agent(reglages: Settings) -> Agent:
     """Agent branché sur les vrais services (Mistral, Tavily)."""
     try:

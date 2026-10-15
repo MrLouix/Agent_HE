@@ -170,3 +170,38 @@ def test_proposition_puis_confirmation_d_exclusion() -> None:
     at = at.button(key="exclure-cannelle_ecorce").click().run()
     assert "cannelle_ecorce" in svc.journal.exclusions()
     assert any("🚫" in m.value for m in at.markdown)
+
+
+def test_onglet_produits_sans_boutique_active() -> None:
+    at = app(services())
+    assert any("Aucune boutique active" in c.value for c in at.caption)
+
+
+def test_onglet_produits_compare_les_he_de_la_fiche(tmp_path: Any) -> None:
+    import httpx
+
+    from agent_he.products.compare import Comparateur
+    from agent_he.products.scraper import Scraper
+
+    from aides import boutique, fixture
+
+    pages = {
+        "https://www.aroma-zone.com/recherche?q=Lavande+vraie": fixture("recherche.html"),
+        "https://www.aroma-zone.com/produit/lavande-vraie": fixture("aroma-zone.html"),
+    }
+
+    def repondre(requete: httpx.Request) -> httpx.Response:
+        if requete.url.path == "/robots.txt":
+            return httpx.Response(200, text="")
+        texte = pages.get(str(requete.url))
+        return httpx.Response(200, text=texte) if texte else httpx.Response(404)
+
+    scraper = Scraper(
+        tmp_path, httpx.Client(transport=httpx.MockTransport(repondre)), attendre=lambda d: None
+    )
+    svc = services(web.URL_SOMMEIL)
+    svc.comparateur = Comparateur([boutique()], scraper, referentiel())
+    at = rechercher(remplir(app(svc)))
+    at = at.button(key="comparer").click().run()
+    assert not at.exception
+    assert any("Lavandula angustifolia — linalol" in m.value for m in at.markdown)

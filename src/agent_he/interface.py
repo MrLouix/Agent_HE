@@ -26,6 +26,7 @@ from agent_he.models import (
     Voie,
 )
 from agent_he.pipeline.agent import Agent, Reponse
+from agent_he.products.compare import Comparateur
 from agent_he.referentiel.huiles import Referentiel, charger_referentiel
 from agent_he.safety.keywords import FiletMotsCles, charger_filet
 from agent_he.safety.questionnaire import RENVOI_PROFESSIONNEL
@@ -66,13 +67,14 @@ class Services:
     filet: FiletMotsCles
     journal: Journal
     referentiel: Referentiel
+    comparateur: Comparateur | None = None
     erreur: str | None = None
     seuil_reactions_fortes: int = 1
     seuil_reactions_legeres: int = 2
 
 
 def services_par_defaut() -> Services:
-    from agent_he.services import ErreurConfiguration, construire_agent
+    from agent_he.services import ErreurConfiguration, construire_agent, construire_comparateur
     from agent_he.storage.db import connecter
 
     reglages = get_settings()
@@ -91,6 +93,7 @@ def services_par_defaut() -> Services:
         filet=charger_filet(reglages.data_dir),
         journal=Journal(connexion),
         referentiel=charger_referentiel(reglages.data_dir),
+        comparateur=construire_comparateur(reglages),
         erreur=erreur,
         seuil_reactions_fortes=reglages.seuil_reactions_fortes,
         seuil_reactions_legeres=reglages.seuil_reactions_legeres,
@@ -152,6 +155,29 @@ def afficher_sources(reponse: Reponse) -> None:
         st.caption("Aucune source pour cette réponse.")
     for source in reponse.sources:
         st.markdown(f"{BADGES[source.confiance]} — [{source.titre}]({source.url})")
+
+
+def onglet_produits(svc: Services, reponse: Reponse | None) -> None:
+    if svc.comparateur is None or not svc.comparateur.boutiques:
+        st.caption(
+            "Aucune boutique active : vérifie leurs CGU et robots.txt, puis complète "
+            "data/boutiques.yaml (cgu_verifiees, url_recherche, motif_lien_produit)."
+        )
+        return
+    if reponse is None or reponse.fiche.recette is None:
+        st.caption("Le comparatif porte sur les HE de la fiche affichée.")
+        return
+    if not st.button("Comparer les produits", key="comparer"):
+        return
+    for dose in reponse.fiche.recette.huiles:
+        st.markdown(f"**{dose.nom}** (*{dose.nom_latin}*)")
+        produits, erreurs = svc.comparateur.comparer(dose.he_id)
+        for p in produits:
+            st.markdown(f"- {p.carte()}")
+        if not produits:
+            st.caption("Aucun produit trouvé.")
+        for erreur in erreurs:
+            st.caption(f"⚠️ {erreur}")
 
 
 def onglet_historique(svc: Services) -> None:
@@ -466,7 +492,7 @@ def main() -> None:
         if reponse is not None:
             afficher_sources(reponse)
     with onglets["Produits"]:
-        st.caption("Comparatif produits : disponible après configuration des boutiques.")
+        onglet_produits(svc, reponse)
     with onglets["Journal"]:
         onglet_journal(svc)
     with onglets["Historique"]:

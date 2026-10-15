@@ -1,5 +1,7 @@
 """Assemblage des services réels (Mistral, Tavily, Chroma, SQLite) à partir des réglages."""
 
+from typing import TYPE_CHECKING
+
 from agent_he.config import Settings
 from agent_he.journal.repository import Journal
 from agent_he.kb.embeddings import Plongeur, PlongeurLocal, PlongeurMistral
@@ -11,6 +13,9 @@ from agent_he.referentiel.huiles import charger_referentiel
 from agent_he.referentiel.securite import charger_table
 from agent_he.storage.audit import JournalAudit
 from agent_he.storage.db import connecter
+
+if TYPE_CHECKING:
+    from agent_he.products.compare import Comparateur
 
 
 class ErreurConfiguration(RuntimeError):
@@ -82,3 +87,15 @@ def huiles_de_reference(reglages: Settings, recette_ref: str) -> list[str]:
         if e.recette_ref == recette_ref and e.fiche.recette is not None:
             return [h.he_id for h in e.fiche.recette.huiles]
     return []
+
+
+def construire_comparateur(reglages: Settings) -> "Comparateur":
+    from agent_he.products.boutiques import charger_boutiques
+    from agent_he.products.compare import Comparateur
+    from agent_he.products.scraper import Scraper
+
+    return Comparateur(
+        charger_boutiques(reglages.data_dir),
+        Scraper(reglages.data_dir / "cache" / "boutiques"),
+        charger_referentiel(reglages.data_dir),
+    )

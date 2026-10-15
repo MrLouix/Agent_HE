@@ -13,6 +13,7 @@ from typing import Any
 
 from agent_he.kb.corpus import RecetteCorpus
 from agent_he.models import DoseHE, Quantite, Questionnaire, Recette
+from agent_he.products.boutiques import Boutique
 from agent_he.referentiel.huiles import Referentiel, charger_referentiel
 from agent_he.referentiel.securite import EntreeSecurite, TableSecurite, valider, verifier
 
@@ -174,3 +175,26 @@ def recette_corpus(**champs: Any) -> RecetteCorpus:
     }
     valeurs.update(champs)
     return RecetteCorpus.model_validate(valeurs)
+
+
+# --- Boutiques (configuration de test) ------------------------------------------------
+
+
+def boutique(**champs: object) -> Boutique:
+    valeurs: dict[str, object] = {
+        "id": "aroma-zone",
+        "nom": "Aroma-Zone",
+        "url": "https://www.aroma-zone.com",
+        "acces": "scraping",
+        "cgu_verifiees": True,
+        "cgu_verifiees_le": "2026-10-01",
+        "delai_s": 5,
+        "url_recherche": "https://www.aroma-zone.com/recherche?q={q}",
+        "motif_lien_produit": r'href="(/produit/[^"]+)"',
+    }
+    valeurs.update(champs)
+    return Boutique.model_validate(valeurs)
+
+
+def fixture(nom: str) -> str:
+    return (FIXTURES / "boutiques" / nom).read_text(encoding="utf-8")
