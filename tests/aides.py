@@ -6,12 +6,14 @@ recopiées dans data/securite.yaml.
 """
 
 from datetime import date
+from functools import lru_cache
 from itertools import count
 from pathlib import Path
 from typing import Any
 
+from agent_he.models import DoseHE, Quantite, Questionnaire, Recette
 from agent_he.referentiel.huiles import Referentiel, charger_referentiel
-from agent_he.referentiel.securite import EntreeSecurite, valider, verifier
+from agent_he.referentiel.securite import EntreeSecurite, TableSecurite, valider, verifier
 
 RACINE = Path(__file__).resolve().parents[1]
 DOSSIER_DONNEES = RACINE / "data"
@@ -20,6 +22,7 @@ FIXTURES = RACINE / "tests" / "fixtures"
 _compteur = count(9000)
 
 
+@lru_cache
 def referentiel() -> Referentiel:
     return charger_referentiel(DOSSIER_DONNEES)
 
@@ -81,3 +84,75 @@ def interdit(he_id: str, profil: str, statut: str = "valide", **champs: Any) -> 
     return entree(
         statut=statut, type="interdit_profil", he_id=he_id, nom_latin=latin, profil=profil, **champs
     )
+
+
+# --- Table de sécurité et recettes de test (valeurs FICTIVES) ---------------------------
+
+URL_A = "https://www.aroma-zone.com/recette-a"
+URL_B = "https://www.compagnie-des-sens.fr/recette-b"
+
+
+def entrees_test() -> list[EntreeSecurite]:
+    return [
+        plafond("lavande_vraie", 5),
+        plafond("tea_tree", 5),
+        plafond("orange_douce", 4),
+        plafond("cannelle_ecorce", 0.1),
+        plafond("gaultherie", 2),
+        plafond("sauge_sclaree", 3),
+        plafond("bergamote", 0.4),
+        plafond("lavande_vraie", 3, voie="massage"),
+        plafond("lavande_vraie", 2, population="de_6_a_12"),
+        plafond_total(6),
+        plafond_total(4, voie="massage"),
+        plafond_total(3, population="de_6_a_12"),
+        interdit("sauge_officinale", "grossesse_allaitement"),
+        interdit("sauge_officinale", "epilepsie"),
+        interdit("romarin_camphre", "epilepsie"),
+        interdit("eucalyptus_globuleux", "asthme"),
+        interdit("menthe_poivree", "de_3_a_6"),
+        interdit("menthe_poivree", "moins_3"),
+        drapeau("gaultherie", "interaction_medicament", detail="anticoagulants"),
+        drapeau("sauge_sclaree", "hormone_like"),
+        drapeau("bergamote", "phototoxique"),
+        drapeau("cannelle_ecorce", "dermocaustique"),
+        drapeau("tea_tree", "allergene", statut="brouillon"),
+    ]
+
+
+def table_test() -> TableSecurite:
+    return TableSecurite(entrees_test())
+
+
+def dose(
+    he_id: str, valeur: float, unite: str = "gouttes", url: str = URL_A, **champs: Any
+) -> DoseHE:
+    huile = referentiel()[he_id]
+    return DoseHE(
+        he_id=he_id,
+        nom=huile.nom,
+        nom_latin=huile.nom_latin,
+        quantite=Quantite(valeur=valeur, unite=unite),  # type: ignore[arg-type]
+        sources=[url],
+        **champs,
+    )
+
+
+def recette(
+    *doses: DoseHE, voie: str = "cutanee", base_volume_ml: float | None = 10, **champs: Any
+) -> Recette:
+    return Recette.model_validate(
+        {
+            "nom_recette": champs.pop("nom_recette", "Recette de test"),
+            "voie": voie,
+            "huiles": [d.model_dump() for d in doses],
+            "base_description": "huile végétale",
+            "base_volume_ml": base_volume_ml,
+            "sources": sorted({u for d in doses for u in d.sources}),
+            **champs,
+        }
+    )
+
+
+def questionnaire(**champs: Any) -> Questionnaire:
+    return Questionnaire.model_validate({"age": "adulte", **champs})

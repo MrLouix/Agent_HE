@@ -218,4 +218,4 @@ Cas rencontrés lors de la saisie et non couverts par les règles R1–R13. Chaq
 
 | # | Date | HE / page | Question | Décision | Version |
 |---|---|---|---|---|---|
-| — | — | — | — | — | — |
+| Q1 | 2026-10-15 | toutes | L'outil exige au moins une entrée **validée** par HE pour la doser (spécification §4 : une HE absente de la table n'est pas dosable). Pour une HE dont la source n'indique aucune limite (R8), aucune entrée `plafond` n'est créée : quelle entrée enregistrer pour que l'HE soit couverte (ex. nouveau type `sans_limite` avec citation) ? En attendant, une telle HE n'est couverte que si elle porte un drapeau ou une contre-indication validés. | à trancher | — |

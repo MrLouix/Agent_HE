@@ -187,10 +187,10 @@ class StatsHE:        he_id; nb_usages; efficacite_moy; odeur_moy; nb_reactions_
 
 Tests écrits **avant** le code ; ils ne seront jamais désactivés.
 
-- [ ] `safety/questionnaire.py` : `profil_exclu(q) -> Motif | None` et `he_exclues(q) -> set[he_id]` (spec §8).
-- [ ] `safety/keywords.py` : détection dans le texte libre (« enceinte », « SA », « trimestre », « allaite », « épilep », « asthm », âges) ⇒ demande de confirmation.
-- [ ] `safety/doses.py` : conversions gouttes ↔ ml ↔ %, convention gouttes/ml configurable, mise à l'échelle à concentration constante.
-- [ ] `safety/checks.py` :
+- [x] `safety/questionnaire.py` : `profil_exclu(q) -> Motif | None` et `he_exclues(q) -> set[he_id]` (spec §8).
+- [x] `safety/keywords.py` : détection dans le texte libre (« enceinte », « SA », « trimestre », « allaite », « épilep », « asthm », âges) ⇒ demande de confirmation.
+- [x] `safety/doses.py` : conversions gouttes ↔ ml ↔ %, convention gouttes/ml configurable, mise à l'échelle à concentration constante.
+- [x] `safety/checks.py` :
   - plafond par HE et par voie ; plafond total du mélange ;
   - HE absente de la table ou sans plafond pour la voie ⇒ rejet (fail closed) ;
   - union des précautions sources + drapeaux ;
@@ -198,8 +198,8 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
   - contradictions ⇒ valeur la plus restrictive + signalement ;
   - recette verbatim hors plafond ⇒ **rejet** (pas de correction) ;
   - HE de la liste d'exclusion personnelle ⇒ recette écartée avec motif (interface `exclusions: set[he_id]` dès cette phase, alimentée par le journal en phase 7).
-- [ ] `safety/traceability.py` : chaque HE/dose/précaution doit être présente dans le texte d'une source citée (via le référentiel pour les noms) ; sinon retirée.
-- [ ] `assert_fiche_sure(fiche)` : validateur final réutilisé partout.
+- [x] `safety/traceability.py` : chaque HE/dose/précaution doit être présente dans le texte d'une source citée (via le référentiel pour les noms) ; sinon retirée.
+- [x] `assert_fiche_sure(fiche)` : validateur final réutilisé partout.
 
 **Acceptation (tests obligatoires)** :
 - Grossesse, épilepsie, asthme ou âge < 6 ans ⇒ `mode="refus"`, aucune quantité, liste `he_a_eviter` non vide.

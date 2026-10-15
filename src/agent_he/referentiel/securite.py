@@ -294,6 +294,16 @@ class TableSecurite:
             r.he_id == he_id for r in self._restrictions
         )
 
+    def couverte(self, he_id: str) -> bool:
+        """Vrai si au moins une entrée **validée** porte sur cette HE (spécification §4).
+
+        Une HE absente de la table n'est jamais dosable, même lorsqu'un plafond total
+        de la voie existe (R8 ne s'applique qu'aux HE présentes dans la table).
+        """
+        return any(e.he_id == he_id for e in self._plafonds) or any(
+            r.he_id == he_id and r.valide for r in self._restrictions
+        )
+
     def plafond(
         self, he_id: str, voie: Voie, population: TrancheAge, chemotype: str | None = None
     ) -> float | None:
