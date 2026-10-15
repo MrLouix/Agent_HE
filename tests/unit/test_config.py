@@ -18,7 +18,8 @@ def test_valeurs_par_defaut() -> None:
     reglages = Settings()
     assert reglages.mistral_api_key is None
     assert reglages.convention_gouttes_ml == 20
-    assert reglages.seuil_correspondance == 0.8
+    assert reglages.seuil_correspondance is None
+    assert reglages.seuil_correspondance_effectif == 0.2  # calibré pour le plongeur local
     assert reglages.seuil_reactions_fortes == 1
     assert reglages.seuil_reactions_legeres == 2
 
@@ -43,7 +44,7 @@ def test_reglages_prefixes(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("AGENT_HE_SEUIL_CORRESPONDANCE", "0.9")
     reglages = Settings()
     assert reglages.convention_gouttes_ml == 25
-    assert reglages.seuil_correspondance == 0.9
+    assert reglages.seuil_correspondance_effectif == 0.9
 
 
 def test_lecture_du_fichier_env(tmp_path: Path) -> None:

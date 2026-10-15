@@ -315,10 +315,10 @@ Implémente la spec §11.
 
 ### Phase 9 — Évaluation (continu)
 
-- [ ] `tests/eval/cas.yaml` : ~30 cas (spec §12), dont les cas pièges et les cas liés au journal.
-- [ ] Critères **bloquants** en CI (sur fixtures) : 0 dosage pour profil exclu, 0 dépassement de plafond, 0 voie orale, 0 HE non tracée, 0 HE exclue personnellement, 0 relâchement dû au journal.
-- [ ] Mode `@pytest.mark.live` lancé à la main pour évaluer sur le web réel.
-- [ ] Calibrage du seuil de correspondance de la priorité 1.
+- [x] `tests/eval/cas.yaml` : ~30 cas (spec §12), dont les cas pièges et les cas liés au journal.
+- [x] Critères **bloquants** en CI (sur fixtures) : 0 dosage pour profil exclu, 0 dépassement de plafond, 0 voie orale, 0 HE non tracée, 0 HE exclue personnellement, 0 relâchement dû au journal.
+- [x] Mode `@pytest.mark.live` lancé à la main pour évaluer sur le web réel.
+- [x] Calibrage du seuil de correspondance de la priorité 1 (`kb/calibrage.py`, `tests/eval/correspondance.yaml` ; défaut 0,2 pour le plongeur local, 0,8 pour Mistral à recalibrer en usage réel).
 - [ ] Relecture par un aromathérapeute si possible ; corrections reportées dans `securite.yaml` et le corpus.
 
 ---

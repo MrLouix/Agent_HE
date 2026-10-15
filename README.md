@@ -29,6 +29,11 @@ uv run pytest                # tests (aucun appel réseau)
 Les tests marqués `live` appellent de vrais services et ne sont lancés qu'à la main :
 `uv run pytest -m live`.
 
+Le jeu d'évaluation (`tests/eval/cas.yaml`, 32 cas dont les cas pièges) est joué en CI sur
+fixtures ; ses critères bloquants (0 dosage pour un profil exclu, 0 dépassement de plafond,
+0 voie orale, 0 HE non tracée, 0 HE exclue, 0 relâchement dû au journal) ne sont jamais
+désactivés.
+
 ## Table de sécurité
 
 Les valeurs de `data/securite.yaml` sont saisies à la main depuis *Essential Oil Safety*

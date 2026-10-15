@@ -36,6 +36,7 @@ from agent_he.pipeline.synthesize import reservoir, synthetiser
 from agent_he.referentiel.huiles import Referentiel
 from agent_he.referentiel.securite import TableSecurite
 from agent_he.safety.checks import IndicationSource, assert_fiche_sure
+from agent_he.safety.perimetre import hors_perimetre
 from agent_he.safety.questionnaire import avertissements_profil, he_a_eviter, profil_exclu
 from agent_he.safety.traceability import tracer
 from agent_he.search.base import ErreurRecherche, Page, Recherche, Recuperateur
@@ -107,7 +108,13 @@ class Agent:
     # --- Étapes ---------------------------------------------------------------------
 
     def refus(self, demande: Demande) -> Reponse | None:
-        """Contrôle de sécurité initial : refus explicatif pour un profil exclu."""
+        """Contrôle de sécurité initial : hors périmètre ou profil exclu ⇒ refus explicatif."""
+        hors = hors_perimetre(f"{demande.besoin} {demande.texte_libre}")
+        if hors is not None:
+            fiche = Fiche(
+                mode="refus", motif=hors, convention_gouttes_ml=self.reglages.convention_gouttes_ml
+            )
+            return Reponse(fiche=fiche, controles=["hors_perimetre"])
         motif = profil_exclu(demande.questionnaire)
         if motif is None:
             return None

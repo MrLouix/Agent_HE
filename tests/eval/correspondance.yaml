@@ -1,0 +1,14 @@
+# Paires étiquetées pour calibrer le seuil de correspondance de la priorité 1.
+# recette : identifiant d'une recette du corpus d'évaluation (scenarios.py).
+- {demande: mieux dormir, recette: roll-on-sommeil, pertinente: true}
+- {demande: insomnie, recette: roll-on-sommeil, pertinente: true}
+- {demande: endormissement difficile le soir, recette: roll-on-sommeil, pertinente: true}
+- {demande: mieux dormir, recette: roll-on-stress, pertinente: false}
+- {demande: mieux dormir, recette: soin-boutons, pertinente: false}
+- {demande: stress au travail, recette: roll-on-stress, pertinente: true}
+- {demande: anxiété avant un examen, recette: roll-on-stress, pertinente: true}
+- {demande: stress au travail, recette: roll-on-sommeil, pertinente: false}
+- {demande: boutons sur le visage, recette: soin-boutons, pertinente: true}
+- {demande: acné, recette: soin-boutons, pertinente: true}
+- {demande: acné, recette: roll-on-stress, pertinente: false}
+- {demande: endormissement difficile le soir, recette: roll-on-stress, pertinente: false}

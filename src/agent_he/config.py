@@ -59,8 +59,17 @@ class Settings(BaseSettings):
     # Plongements pour l'index du corpus : « local » (hors ligne) ou « mistral »
     plongeur: Literal["local", "mistral"] = "local"
 
-    # Priorité 1 : seuil de similarité pour retenir une recette existante (spec §6)
-    seuil_correspondance: float = Field(default=0.8, ge=0.0, le=1.0)
+    # Priorité 1 : seuil de similarité pour retenir une recette existante (spec §6).
+    # Non renseigné : valeur calibrée pour le plongeur choisi (kb/calibrage.py).
+    seuil_correspondance: float | None = Field(default=None, ge=0.0, le=1.0)
+
+    @property
+    def seuil_correspondance_effectif(self) -> float:
+        from agent_he.kb.calibrage import seuil_par_defaut
+
+        if self.seuil_correspondance is not None:
+            return self.seuil_correspondance
+        return seuil_par_defaut(self.plongeur)
 
     # Journal d'usage : seuils de proposition d'exclusion personnelle (spec §11.3)
     seuil_reactions_fortes: int = Field(default=1, ge=1)

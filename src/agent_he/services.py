@@ -40,7 +40,7 @@ def reglages_agent(reglages: Settings) -> Reglages:
         convention_gouttes_ml=reglages.convention_gouttes_ml,
         recherche_ouverte=reglages.recherche_ouverte,
         max_resultats=reglages.max_resultats,
-        seuil_correspondance=reglages.seuil_correspondance,
+        seuil_correspondance=reglages.seuil_correspondance_effectif,
     )
 
 
