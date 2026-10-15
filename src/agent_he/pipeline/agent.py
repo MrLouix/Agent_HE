@@ -9,11 +9,23 @@ chaque réponse laisse une entrée dans le journal d'audit.
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass, field
 
+from agent_he.journal.ranking import classer
+from agent_he.journal.repository import Journal
+from agent_he.journal.stats import rappel, stats_recette
 from agent_he.kb.corpus import RecetteCorpus
 from agent_he.kb.store import ErreurIndex, Magasin
 from agent_he.kb.validation import FileValidation
 from agent_he.llm.base import LLM, ErreurLLM
-from agent_he.models import Confiance, Demande, EntreeAudit, Fiche, Recette, Source, Voie
+from agent_he.models import (
+    Confiance,
+    Demande,
+    EntreeAudit,
+    Fiche,
+    Recette,
+    Source,
+    Tolerance,
+    Voie,
+)
 from agent_he.pipeline.analyze import Analyse, analyser
 from agent_he.pipeline.extract import extraire
 from agent_he.pipeline.match import Candidate, Contexte, correspondances_corpus
@@ -77,6 +89,7 @@ class Agent:
         corpus: Mapping[str, RecetteCorpus] | None = None,
         file_validation: FileValidation | None = None,
         audit: JournalAudit | None = None,
+        journal: Journal | None = None,
     ) -> None:
         self.llm = llm
         self.recherche = recherche
@@ -89,6 +102,7 @@ class Agent:
         self.corpus: Mapping[str, RecetteCorpus] = corpus or {}
         self.file_validation = file_validation
         self.audit = audit
+        self.journal = journal
 
     # --- Étapes ---------------------------------------------------------------------
 
@@ -188,8 +202,37 @@ class Agent:
         return plafonds
 
     def ordonner(self, candidates: list[Candidate]) -> list[Candidate]:
-        """Ordre de présentation des recettes conformes (pertinence décroissante)."""
-        return sorted(candidates, key=lambda c: c.pertinence, reverse=True)
+        """Ordre de présentation des recettes **déjà conformes** (journal : ordonne seulement)."""
+        if self.journal is None:
+            return sorted(candidates, key=lambda c: c.pertinence, reverse=True)
+        return classer(
+            candidates,
+            self.journal.lister(),
+            recette=lambda c: c.recette,
+            ref=lambda c: c.ref or c.recette.nom_recette,
+            pertinence=lambda c: c.pertinence,
+        )
+
+    def retours_journal(self, candidate: Candidate) -> tuple[str | None, list[str]]:
+        """Rappel des retours (« d'après ton journal… ») et réactions notées avec ses HE."""
+        if self.journal is None:
+            return None, []
+        entrees = self.journal.lister()
+        ref = candidate.ref or candidate.recette.nom_recette
+        texte = rappel(stats_recette(entrees, ref))
+        noms = {h.he_id: h.nom for h in candidate.recette.huiles}
+        alertes: list[str] = []
+        for entree, huiles in entrees:
+            if entree.tolerance == Tolerance.AUCUNE:
+                continue
+            communes = [noms[h] for h in huiles if h in noms]
+            if communes:
+                niveau = "forte" if entree.tolerance == Tolerance.FORTE else "légère"
+                alertes.append(
+                    f"⚠️ Réaction {niveau} notée le {entree.horodatage:%d/%m/%Y} avec un "
+                    f"mélange contenant {', '.join(communes)}."
+                )
+        return texte, alertes
 
     def fiche(self, demande: Demande, candidate: Candidate, sources: list[Source]) -> Fiche:
         citees = [s for s in sources if str(s.url) in candidate.recette.sources]
@@ -238,6 +281,13 @@ class Agent:
         demande: Demande,
         exclusions_perso: Mapping[str, str] | Collection[str] = (),
     ) -> Reponse:
+        if self.journal is not None:
+            # Le journal ne peut que restreindre : ses exclusions s'ajoutent aux autres.
+            exclusions_perso = {
+                **dict.fromkeys(exclusions_perso, "exclusion personnelle"),
+                **(dict(exclusions_perso) if isinstance(exclusions_perso, Mapping) else {}),
+                **self.journal.exclusions(),
+            }
         reponse = self._repondre(demande, exclusions_perso)
         if self.audit is not None:
             self.audit.enregistrer(
@@ -340,6 +390,8 @@ class Agent:
     def finaliser(self, ctx: Contexte, candidate: Candidate, sources: list[Source]) -> Reponse:
         """Construit la fiche et la soumet au validateur final (dernier rempart)."""
         fiche = self.fiche(ctx.demande, candidate, sources)
+        fiche.rappel_journal, alertes = self.retours_journal(candidate)
+        fiche.avertissements.extend(alertes)
         assert_fiche_sure(
             fiche,
             ctx.demande.questionnaire,
@@ -350,4 +402,5 @@ class Agent:
             sources_recuperees={str(s.url) for s in sources},
         )
         utilisees = [s for s in sources if str(s.url) in candidate.recette.sources]
-        return Reponse(fiche, utilisees, ctx.controles, ctx.notes, recette_ref=candidate.ref)
+        ref = candidate.ref or candidate.recette.nom_recette
+        return Reponse(fiche, utilisees, ctx.controles, ctx.notes, recette_ref=ref)

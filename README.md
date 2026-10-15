@@ -46,6 +46,8 @@ uv run agent-he securite rapport                      # docs/audit/securite-<dat
 ```bash
 uv run streamlit run app/streamlit_app.py   # interface locale
 uv run agent-he ask "mélange pour dormir" --voie cutanee --age adulte   # questionnaire : --grossesse, --asthme…
+uv run agent-he journal add --melange "lavande fine:3:gouttes" --voie diffusion --tolerance aucune --efficacite 4
+uv run agent-he journal exclure <he_id>   # confirme une proposition d'exclusion
 uv run agent-he corpus reindex             # indexe data/recettes/ (Chroma, data/chroma/)
 uv run agent-he corpus candidates          # recettes web en attente de relecture
 uv run agent-he corpus valider <id> --besoin sommeil

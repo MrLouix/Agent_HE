@@ -1,6 +1,7 @@
 """Assemblage des services réels (Mistral, Tavily, Chroma, SQLite) à partir des réglages."""
 
 from agent_he.config import Settings
+from agent_he.journal.repository import Journal
 from agent_he.kb.embeddings import Plongeur, PlongeurLocal, PlongeurMistral
 from agent_he.kb.ingest import charger_et_indexer_si_besoin
 from agent_he.kb.store import Magasin, MagasinChroma
@@ -64,4 +65,20 @@ def construire_agent(reglages: Settings) -> Agent:
         corpus=charger_et_indexer_si_besoin(dossier / "recettes", magasin),
         file_validation=file_validation(reglages),
         audit=JournalAudit(connecter(reglages.db_path)),
+        journal=Journal(connecter(reglages.db_path)),
     )
+
+
+def huiles_de_reference(reglages: Settings, recette_ref: str) -> list[str]:
+    """HE d'une recette de référence : corpus, puis historique, puis favoris."""
+    from agent_he.kb.corpus import charger_corpus
+    from agent_he.storage.favorites import Favoris, Historique
+
+    corpus = charger_corpus(reglages.data_dir / "recettes")
+    if recette_ref in corpus:
+        return [h.he_id for h in corpus[recette_ref].recette.huiles]
+    connexion = connecter(reglages.db_path)
+    for e in [*Historique(connexion).lister(500), *Favoris(connexion).lister()]:
+        if e.recette_ref == recette_ref and e.fiche.recette is not None:
+            return [h.he_id for h in e.fiche.recette.huiles]
+    return []

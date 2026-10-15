@@ -270,21 +270,21 @@ Implémente l'arbre de décision de la spec §6.
 
 Implémente la spec §11.
 
-- [ ] `journal/repository.py` : tables `usage` et `exclusion_perso` ; création, modification (réaction apparue plus tard), suppression.
-- [ ] Saisie :
+- [x] `journal/repository.py` : tables `usage` et `exclusion_perso` ; création, modification (réaction apparue plus tard), suppression.
+- [x] Saisie :
   - bouton « J'ai utilisé cette recette » sur fiche et favori ⇒ formulaire pré-rempli, champs obligatoires seuls visibles ;
   - mélange libre : HE + quantités, normalisées via `referentiel/huiles.py` ;
   - rappel des utilisations récentes sans retour ;
   - commande CLI `agent-he journal add`.
-- [ ] `journal/stats.py` : agrégats par recette et par HE ; préférences olfactives (HE appréciées / détestées).
-- [ ] `journal/tolerance.py` :
+- [x] `journal/stats.py` : agrégats par recette et par HE ; préférences olfactives (HE appréciées / détestées).
+- [x] `journal/tolerance.py` :
   - HE suspectes = HE présentes dans les mélanges avec réaction et absentes des mélanges bien tolérés (classées par fréquence) ;
   - seuil configurable (défaut : 1 réaction forte ou 2 légères sur la même HE) ⇒ **proposition** d'exclusion, jamais d'ajout automatique ;
   - ajout / retrait d'exclusion uniquement sur confirmation.
-- [ ] `journal/ranking.py` : réordonne les recettes **déjà conformes** (score = pertinence + bonus/malus journal, bornés) ; ne réintroduit jamais une recette écartée.
-- [ ] Branchement pipeline : `checks` reçoit les exclusions personnelles ; `ranking` s'applique après `checks` ; `Fiche.rappel_journal` renseigné.
-- [ ] File de validation : affichage des retours du journal pour la recette candidate.
-- [ ] Onglet Journal : saisie, historique filtrable, préférences, réactions, liste d'exclusion.
+- [x] `journal/ranking.py` : réordonne les recettes **déjà conformes** (score = pertinence + bonus/malus journal, bornés) ; ne réintroduit jamais une recette écartée.
+- [x] Branchement pipeline : `checks` reçoit les exclusions personnelles ; `ranking` s'applique après `checks` ; `Fiche.rappel_journal` renseigné.
+- [x] File de validation : affichage des retours du journal pour la recette candidate.
+- [x] Onglet Journal : saisie, historique filtrable, préférences, réactions, liste d'exclusion.
 
 **Acceptation (tests obligatoires)** :
 - Le journal ne peut pas relever un plafond : une recette surdosée avec 10 retours 5/5 reste rejetée.

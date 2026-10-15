@@ -6,6 +6,7 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 from agent_he.interface import Services
+from agent_he.journal.repository import Journal
 from agent_he.kb.validation import FileValidation
 from agent_he.models import AVERTISSEMENT_SYNTHESE, TrancheAge, Voie
 from agent_he.pipeline.agent import Agent, Reglages
@@ -38,6 +39,8 @@ def services(*urls: str, agent: bool = True) -> Services:
         favoris=Favoris(connexion),
         file_validation=FileValidation(connexion),
         filet=charger_filet(DOSSIER_DONNEES),
+        journal=Journal(connexion),
+        referentiel=referentiel(),
         erreur=None if agent else "Clés d'API absentes : renseigne MISTRAL_API_KEY.",
     )
 
@@ -139,3 +142,31 @@ def test_cle_api_absente_message_clair() -> None:
 def test_onglets_presents(onglet: str) -> None:
     at = app(services())
     assert onglet in [t.label for t in at.tabs]
+
+
+def test_j_ai_utilise_cette_recette() -> None:
+    svc = services(web.URL_SOMMEIL)
+    at = rechercher(remplir(app(svc)))
+    at.radio(key="tol-fiche").set_value("legere")
+    at.text_input(key="reac-fiche").input("rougeurs")
+    at = at.button(key="FormSubmitter:usage-fiche-Enregistrer le retour").click().run()
+    assert not at.exception
+    ((entree, huiles),) = svc.journal.lister()
+    assert entree.recette_ref == "Roll-on sommeil apaisant"
+    assert entree.tolerance == "legere"
+    assert huiles == ["lavande_vraie", "orange_douce"]
+
+
+def test_proposition_puis_confirmation_d_exclusion() -> None:
+    from agent_he.models import EntreeUsage
+
+    svc = services()
+    svc.journal.ajouter(
+        EntreeUsage(recette_ref="r", voie="cutanee", tolerance="forte"), ["cannelle_ecorce"]
+    )
+    at = app(svc)
+    assert any("Proposition : exclure Cannelle de Ceylan" in w.value for w in at.warning)
+    assert svc.journal.exclusions() == {}
+    at = at.button(key="exclure-cannelle_ecorce").click().run()
+    assert "cannelle_ecorce" in svc.journal.exclusions()
+    assert any("🚫" in m.value for m in at.markdown)

@@ -9,10 +9,22 @@ import typer
 from agent_he import services
 from agent_he.config import Settings, get_settings
 from agent_he.export import fiche_markdown
+from agent_he.journal.repository import ErreurJournal, Journal
+from agent_he.journal.saisie import parser_melange
+from agent_he.journal.tolerance import propositions_exclusion
 from agent_he.kb.ingest import reindexer
 from agent_he.kb.store import Magasin
 from agent_he.kb.validation import ErreurValidation, FileValidation
-from agent_he.models import Besoin, Demande, Questionnaire, TrancheAge, Voie
+from agent_he.models import (
+    Besoin,
+    Demande,
+    EntreeUsage,
+    ExclusionPerso,
+    Questionnaire,
+    Tolerance,
+    TrancheAge,
+    Voie,
+)
 from agent_he.pipeline.agent import Agent
 from agent_he.referentiel.huiles import charger_referentiel
 from agent_he.referentiel.rapport import rapport_markdown
@@ -26,12 +38,15 @@ from agent_he.referentiel.securite import (
     valider,
     verifier,
 )
+from agent_he.storage.db import connecter
 
 app = typer.Typer(help="Agent personnel d'aide aux synergies d'huiles essentielles.")
 securite_app = typer.Typer(help="Table de sécurité : vérification, validation, audit.")
 app.add_typer(securite_app, name="securite")
 corpus_app = typer.Typer(help="Corpus de recettes validées et file de validation.")
 app.add_typer(corpus_app, name="corpus")
+journal_app = typer.Typer(help="Journal d'usage : retours, réactions, exclusions personnelles.")
+app.add_typer(journal_app, name="journal")
 
 
 def _dossier() -> Path:
@@ -209,6 +224,119 @@ def corpus_rejeter(
     except ErreurValidation as exc:
         raise _erreur(str(exc)) from exc
     typer.echo(f"{candidate_id} rejetée.")
+
+
+def _journal(reglages: Settings) -> Journal:
+    return Journal(connecter(reglages.db_path))
+
+
+@journal_app.command("add")
+def journal_add(
+    voie: Annotated[Voie, typer.Option(help="Voie utilisée.")],
+    tolerance: Annotated[Tolerance, typer.Option(help="aucune, legere ou forte.")],
+    recette: Annotated[str | None, typer.Option(help="Référence de la recette.")] = None,
+    melange: Annotated[
+        str | None, typer.Option(help="Mélange libre : « lavande fine:3:gouttes; … ».")
+    ] = None,
+    he: Annotated[
+        list[str] | None, typer.Option(help="HE de la recette, si elle est introuvable.")
+    ] = None,
+    efficacite: Annotated[int | None, typer.Option(min=1, max=5, help="1 à 5.")] = None,
+    odeur: Annotated[int | None, typer.Option(min=1, max=5, help="1 à 5.")] = None,
+    reaction: Annotated[str | None, typer.Option(help="Description de la réaction.")] = None,
+    personne: Annotated[str, typer.Option(help="Personne concernée.")] = "moi",
+    contexte: Annotated[str | None, typer.Option()] = None,
+    notes: Annotated[str | None, typer.Option()] = None,
+) -> None:
+    """Ajoute un retour d'utilisation."""
+    reglages = get_settings()
+    if (recette is None) == (melange is None):
+        raise _erreur("Indiquer soit --recette, soit --melange.")
+    try:
+        doses = parser_melange(melange, charger_referentiel(reglages.data_dir)) if melange else None
+        huiles = [] if doses else (he or services.huiles_de_reference(reglages, recette or ""))
+        entree = EntreeUsage(
+            recette_ref=recette,
+            melange_libre=doses,
+            voie=voie,
+            personne=personne,
+            efficacite=efficacite,
+            tolerance=tolerance,
+            description_reaction=reaction,
+            odeur=odeur,
+            contexte=contexte,
+            notes=notes,
+        )
+        journal = _journal(reglages)
+        entree_id = journal.ajouter(entree, huiles)
+    except (ErreurJournal, ValueError) as exc:
+        raise _erreur(str(exc)) from exc
+    typer.echo(f"Retour enregistré ({entree_id}).")
+    for p in propositions_exclusion(
+        journal.lister(),
+        set(journal.exclusions()),
+        reglages.seuil_reactions_fortes,
+        reglages.seuil_reactions_legeres,
+    ):
+        typer.secho(
+            f"Proposition : exclure {p.he_id} ({p.motif}). "
+            f"Confirme avec `agent-he journal exclure {p.he_id}`.",
+            fg=typer.colors.YELLOW,
+        )
+
+
+@journal_app.command("list")
+def journal_list(
+    he: Annotated[str | None, typer.Option(help="Filtrer sur une HE.")] = None,
+    recette: Annotated[str | None, typer.Option(help="Filtrer sur une recette.")] = None,
+) -> None:
+    """Historique des retours."""
+    for entree, huiles in _journal(get_settings()).lister(recette_ref=recette, he_id=he):
+        efficacite = f"{entree.efficacite}/5" if entree.efficacite else "sans objet"
+        typer.echo(
+            f"{entree.horodatage:%d/%m/%Y %H:%M}  {entree.recette_ref or 'mélange libre'}  "
+            f"({', '.join(huiles)})  efficacité {efficacite}  tolérance {entree.tolerance}"
+        )
+
+
+@journal_app.command("exclure")
+def journal_exclure(
+    he_id: Annotated[str, typer.Argument(help="Identifiant de l'HE.")],
+    motif: Annotated[str | None, typer.Option(help="Motif (défaut : proposition).")] = None,
+) -> None:
+    """Confirme l'ajout d'une HE à la liste d'exclusion personnelle."""
+    reglages = get_settings()
+    if he_id not in charger_referentiel(reglages.data_dir):
+        raise _erreur(f"HE inconnue : {he_id}")
+    journal = _journal(reglages)
+    proposition = next(
+        (p for p in propositions_exclusion(journal.lister(), set()) if p.he_id == he_id), None
+    )
+    journal.confirmer_exclusion(
+        ExclusionPerso(
+            he_id=he_id,
+            motif=motif or (proposition.motif if proposition else "exclusion personnelle"),
+            entrees_liees=list(proposition.entrees) if proposition else [],
+        )
+    )
+    typer.echo(f"{he_id} ajoutée à ta liste d'exclusion personnelle.")
+
+
+@journal_app.command("retirer")
+def journal_retirer(he_id: Annotated[str, typer.Argument(help="Identifiant de l'HE.")]) -> None:
+    """Retire une HE de la liste d'exclusion personnelle."""
+    _journal(get_settings()).retirer_exclusion(he_id)
+    typer.echo(f"{he_id} retirée de ta liste d'exclusion personnelle.")
+
+
+@journal_app.command("exclusions")
+def journal_exclusions() -> None:
+    """Affiche la liste d'exclusion personnelle."""
+    exclusions = _journal(get_settings()).liste_exclusions()
+    if not exclusions:
+        typer.echo("Aucune exclusion personnelle.")
+    for e in exclusions:
+        typer.echo(f"{e.he_id} — {e.motif} (depuis le {e.date_ajout:%d/%m/%Y})")
 
 
 def construire_agent(reglages: Settings) -> Agent:
