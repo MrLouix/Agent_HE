@@ -5,6 +5,7 @@ description = "Agent personnel de recherche de recettes et mélanges d'huiles es
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "chromadb>=1.5.9",
     "httpx>=0.28.1",
     "pydantic>=2.7",
     "pydantic-settings>=2.3",

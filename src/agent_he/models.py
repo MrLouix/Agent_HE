@@ -88,6 +88,19 @@ class Tolerance(StrEnum):
     FORTE = "forte"
 
 
+class Besoin(StrEnum):
+    """Catégories de besoins (bien-être et confort, jamais de soin : spécification §0)."""
+
+    SOMMEIL = "sommeil"
+    STRESS = "stress"
+    PEAU = "peau"
+    DIGESTION = "digestion"
+    RESPIRATION = "respiration"
+    DOULEURS = "douleurs"
+    CONCENTRATION = "concentration"
+    AMBIANCE = "ambiance"
+
+
 ModeFiche = Literal["validee", "publiee", "synthese", "refus", "aucune"]
 MODES_AVEC_RECETTE: frozenset[str] = frozenset({"validee", "publiee", "synthese"})
 

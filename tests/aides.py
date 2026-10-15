@@ -11,6 +11,7 @@ from itertools import count
 from pathlib import Path
 from typing import Any
 
+from agent_he.kb.corpus import RecetteCorpus
 from agent_he.models import DoseHE, Quantite, Questionnaire, Recette
 from agent_he.referentiel.huiles import Referentiel, charger_referentiel
 from agent_he.referentiel.securite import EntreeSecurite, TableSecurite, valider, verifier
@@ -156,3 +157,20 @@ def recette(
 
 def questionnaire(**champs: Any) -> Questionnaire:
     return Questionnaire.model_validate({"age": "adulte", **champs})
+
+
+def recette_corpus(**champs: Any) -> RecetteCorpus:
+    """Recette de corpus FICTIVE (pour les tests uniquement)."""
+    valeurs: dict[str, Any] = {
+        "id": "roll-on-sommeil",
+        "besoins": ["sommeil"],
+        "mots_cles": ["endormissement", "soir"],
+        "confiance": "commercial",
+        "recette": recette(
+            dose("lavande_vraie", 6), dose("orange_douce", 4), nom_recette="Roll-on sommeil"
+        ).model_dump(),
+        "validee_par": "testeur",
+        "validee_le": "2026-01-05",
+    }
+    valeurs.update(champs)
+    return RecetteCorpus.model_validate(valeurs)

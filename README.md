@@ -40,3 +40,13 @@ uv run agent-he securite verifier SEC-0001 --conforme # ou --non-conforme "<poin
 uv run agent-he securite valider SEC-0001
 uv run agent-he securite rapport                      # docs/audit/securite-<date>.md
 ```
+
+## Utilisation
+
+```bash
+uv run agent-he ask "mélange pour dormir" --voie cutanee --age adulte   # questionnaire : --grossesse, --asthme…
+uv run agent-he corpus reindex             # indexe data/recettes/ (Chroma, data/chroma/)
+uv run agent-he corpus candidates          # recettes web en attente de relecture
+uv run agent-he corpus valider <id> --besoin sommeil
+uv run agent-he corpus rejeter <id> --motif "<raison>"
+```

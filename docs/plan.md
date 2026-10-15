@@ -230,9 +230,9 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
 
 ### Phase 4 — Corpus validé et file de validation (~1 j)
 
-- [ ] `kb/store.py`, `kb/ingest.py` : indexation de `data/recettes/` dans Chroma (métadonnées : besoin, voie, sources, confiance).
-- [ ] `kb/validation.py` : recettes web candidates enregistrées en SQLite ; actions *valider* (export JSON vers `data/recettes/` puis réindexation) et *rejeter*.
-- [ ] Commandes CLI : `agent-he corpus reindex`, `agent-he corpus candidates`, `agent-he corpus valider <id>`.
+- [x] `kb/store.py`, `kb/ingest.py` : indexation de `data/recettes/` dans Chroma (métadonnées : besoin, voie, sources, confiance).
+- [x] `kb/validation.py` : recettes web candidates enregistrées en SQLite ; actions *valider* (export JSON vers `data/recettes/` puis réindexation) et *rejeter*.
+- [x] Commandes CLI : `agent-he corpus reindex`, `agent-he corpus candidates`, `agent-he corpus valider <id>`.
 
 **Acceptation** : une recette du corpus est retrouvée sans appel web (fake search qui échoue s'il est appelé).
 

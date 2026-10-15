@@ -8,8 +8,12 @@ normalisation ⇒ traçabilité ⇒ contrôles communs ⇒ fiche validée par `a
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass, field
 
+from agent_he.kb.corpus import RecetteCorpus
+from agent_he.kb.store import Magasin
+from agent_he.kb.validation import FileValidation
 from agent_he.llm.base import LLM, ErreurLLM
-from agent_he.models import Demande, Fiche, Recette, Source
+from agent_he.models import Besoin, Confiance, Demande, Fiche, Recette, Source
+from agent_he.pipeline.analyze import categoriser
 from agent_he.pipeline.extract import extraire
 from agent_he.pipeline.normalize import normaliser_indication, normaliser_recette
 from agent_he.referentiel.huiles import Referentiel
@@ -27,6 +31,7 @@ class Reglages:
     convention_gouttes_ml: int = 20
     recherche_ouverte: bool = False
     max_resultats: int = 5
+    seuil_correspondance: float = 0.8
 
 
 @dataclass
@@ -60,6 +65,9 @@ class Agent:
         referentiel: Referentiel,
         fiabilite: Fiabilite,
         reglages: Reglages | None = None,
+        magasin: Magasin | None = None,
+        corpus: Mapping[str, RecetteCorpus] | None = None,
+        file_validation: FileValidation | None = None,
     ) -> None:
         self.llm = llm
         self.recherche = recherche
@@ -68,6 +76,9 @@ class Agent:
         self.referentiel = referentiel
         self.fiabilite = fiabilite
         self.reglages = reglages or Reglages()
+        self.magasin = magasin
+        self.corpus: Mapping[str, RecetteCorpus] = corpus or {}
+        self.file_validation = file_validation
 
     # --- Étapes ---------------------------------------------------------------------
 
@@ -122,6 +133,55 @@ class Agent:
                 "extrait": page.texte[:300],
             }
         )
+
+    def besoins(self, demande: Demande) -> list[Besoin]:
+        return categoriser(f"{demande.besoin} {demande.texte_libre}")
+
+    def source_url(self, url: str) -> Source:
+        return Source.model_validate(
+            {"url": url, "titre": url, "confiance": self.fiabilite.confiance(url)}
+        )
+
+    def candidates_corpus(
+        self,
+        demande: Demande,
+        besoins: list[Besoin],
+        exclusions_perso: Mapping[str, str] | Collection[str],
+        notes: list[str],
+        controles: list[str],
+    ) -> list[Candidate]:
+        """Priorité 1a : recettes validées proches du besoin et conformes."""
+        if self.magasin is None or not besoins:
+            return []
+        candidates: list[Candidate] = []
+        texte = f"{' '.join(besoins)} {demande.besoin}"
+        for correspondance in self.magasin.chercher(texte, demande.voies, besoins):
+            entree = self.corpus.get(correspondance.id)
+            if entree is None or correspondance.similarite < self.reglages.seuil_correspondance:
+                continue
+            verdict = controler_recette(
+                entree.recette,
+                demande.questionnaire,
+                self.table,
+                self.referentiel,
+                convention_gouttes_ml=self.reglages.convention_gouttes_ml,
+                exclusions_perso=exclusions_perso,
+            )
+            controles.extend(verdict.controles)
+            if not verdict.conforme or verdict.recette is None:
+                notes.extend(
+                    f"« {entree.recette.nom_recette} » écartée : {r}" for r in verdict.rejets
+                )
+                continue
+            candidates.append(
+                Candidate(
+                    recette=verdict.recette,
+                    mode="validee",
+                    avertissements=verdict.avertissements,
+                    controles=verdict.controles,
+                )
+            )
+        return candidates
 
     def candidates_web(
         self,
@@ -230,6 +290,15 @@ class Agent:
 
         notes: list[str] = []
         controles: list[str] = []
+        besoins = self.besoins(demande)
+
+        corpus = self.candidates_corpus(demande, besoins, exclusions_perso, notes, controles)
+        if corpus:
+            sources = [self.source_url(u) for u in corpus[0].recette.sources]
+            return self.finaliser(
+                demande, corpus[0], sources, [], exclusions_perso, controles, notes
+            )
+
         try:
             pages = self.recuperer_pages(demande, notes)
             candidates, _, contradictions = self.candidates_web(
@@ -240,10 +309,33 @@ class Agent:
             return Reponse(fiche=self.aucune(motif), controles=controles, notes=notes)
         sources = [self.source(p) for p in pages]
         if not candidates:
-            motif = self.motif_aucune(notes)
-            return Reponse(self.aucune(motif), sources, controles, notes)
+            return Reponse(self.aucune(self.motif_aucune(notes)), sources, controles, notes)
 
-        fiche = self.fiche(demande, candidates[0], sources)
+        choisie = candidates[0]
+        if self.file_validation is not None:
+            confiance = min(
+                (s.confiance for s in sources if str(s.url) in choisie.recette.sources),
+                key=list(Confiance).index,
+                default=Confiance.NON_VERIFIE,
+            )
+            cid = self.file_validation.ajouter(choisie.recette, besoins, confiance)
+            notes.append(f"Recette ajoutée à la file de validation ({cid})")
+        return self.finaliser(
+            demande, choisie, sources, contradictions, exclusions_perso, controles, notes
+        )
+
+    def finaliser(
+        self,
+        demande: Demande,
+        candidate: Candidate,
+        sources: list[Source],
+        contradictions: list[str],
+        exclusions_perso: Mapping[str, str] | Collection[str],
+        controles: list[str],
+        notes: list[str],
+    ) -> Reponse:
+        """Construit la fiche et la soumet au validateur final (dernier rempart)."""
+        fiche = self.fiche(demande, candidate, sources)
         fiche.contradictions.extend(contradictions)
         assert_fiche_sure(
             fiche,
@@ -254,5 +346,5 @@ class Agent:
             exclusions_perso=set(exclusions_perso),
             sources_recuperees={str(s.url) for s in sources},
         )
-        utilisees = [s for s in sources if str(s.url) in candidates[0].recette.sources]
+        utilisees = [s for s in sources if str(s.url) in candidate.recette.sources]
         return Reponse(fiche, utilisees, controles, notes)

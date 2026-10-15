@@ -8,7 +8,10 @@ import typer
 
 from agent_he.config import Settings, get_settings
 from agent_he.export import fiche_markdown
-from agent_he.models import Demande, Questionnaire, TrancheAge, Voie
+from agent_he.kb.ingest import charger_et_indexer_si_besoin, reindexer
+from agent_he.kb.store import Magasin
+from agent_he.kb.validation import ErreurValidation, FileValidation
+from agent_he.models import Besoin, Demande, Questionnaire, TrancheAge, Voie
 from agent_he.pipeline.agent import Agent, Reglages
 from agent_he.referentiel.huiles import charger_referentiel
 from agent_he.referentiel.rapport import rapport_markdown
@@ -22,10 +25,13 @@ from agent_he.referentiel.securite import (
     valider,
     verifier,
 )
+from agent_he.storage.db import connecter
 
 app = typer.Typer(help="Agent personnel d'aide aux synergies d'huiles essentielles.")
 securite_app = typer.Typer(help="Table de sécurité : vérification, validation, audit.")
 app.add_typer(securite_app, name="securite")
+corpus_app = typer.Typer(help="Corpus de recettes validées et file de validation.")
+app.add_typer(corpus_app, name="corpus")
 
 
 def _dossier() -> Path:
@@ -132,6 +138,84 @@ def securite_rapport(
     typer.echo(f"Rapport écrit : {chemin}")
 
 
+def construire_magasin(reglages: Settings) -> Magasin:
+    from agent_he.kb.embeddings import Plongeur, PlongeurLocal, PlongeurMistral
+    from agent_he.kb.store import MagasinChroma
+
+    plongeur: Plongeur = PlongeurLocal()
+    if reglages.plongeur == "mistral":
+        if reglages.mistral_api_key is None:
+            raise _erreur("AGENT_HE_PLONGEUR=mistral exige MISTRAL_API_KEY.")
+        plongeur = PlongeurMistral(reglages.mistral_api_key.get_secret_value())
+    return MagasinChroma(reglages.chroma_dir, plongeur)
+
+
+def file_validation(reglages: Settings) -> FileValidation:
+    return FileValidation(connecter(reglages.db_path))
+
+
+@corpus_app.command("reindex")
+def corpus_reindex() -> None:
+    """Reconstruit l'index du corpus à partir de data/recettes/."""
+    reglages = get_settings()
+    corpus = reindexer(reglages.data_dir / "recettes", construire_magasin(reglages))
+    typer.echo(f"{len(corpus)} recette(s) indexée(s).")
+
+
+@corpus_app.command("candidates")
+def corpus_candidates(
+    toutes: Annotated[bool, typer.Option(help="Inclure les candidates déjà traitées.")] = False,
+) -> None:
+    """Liste les recettes web en attente de relecture."""
+    candidates = file_validation(get_settings()).lister(None if toutes else "en_attente")
+    if not candidates:
+        typer.echo("Aucune candidate.")
+    for c in candidates:
+        huiles = ", ".join(h.nom for h in c.recette.huiles)
+        typer.echo(
+            f"{c.id}  [{c.statut}]  {c.recette.nom_recette} ({c.recette.voie}) — {huiles} — "
+            f"{', '.join(c.recette.sources)}"
+        )
+
+
+@corpus_app.command("valider")
+def corpus_valider(
+    candidate_id: Annotated[str, typer.Argument(help="Identifiant de la candidate.")],
+    besoin: Annotated[
+        list[Besoin] | None, typer.Option(help="Besoins couverts (défaut : ceux détectés).")
+    ] = None,
+    identifiant: Annotated[str | None, typer.Option(help="Identifiant dans le corpus.")] = None,
+    par: OptionPar = None,
+) -> None:
+    """Valide une candidate après relecture : export dans data/recettes/ puis réindexation."""
+    reglages = get_settings()
+    try:
+        recette = file_validation(reglages).valider(
+            candidate_id,
+            par=par or reglages.utilisateur,
+            dossier_recettes=reglages.data_dir / "recettes",
+            besoins=besoin or None,
+            identifiant=identifiant,
+        )
+    except ErreurValidation as exc:
+        raise _erreur(str(exc)) from exc
+    typer.echo(f"Recette ajoutée au corpus : {recette.id}")
+    corpus_reindex()
+
+
+@corpus_app.command("rejeter")
+def corpus_rejeter(
+    candidate_id: Annotated[str, typer.Argument(help="Identifiant de la candidate.")],
+    motif: Annotated[str, typer.Option(help="Motif du rejet.")],
+) -> None:
+    """Rejette une candidate."""
+    try:
+        file_validation(get_settings()).rejeter(candidate_id, motif)
+    except ErreurValidation as exc:
+        raise _erreur(str(exc)) from exc
+    typer.echo(f"{candidate_id} rejetée.")
+
+
 def construire_agent(reglages: Settings) -> Agent:
     """Agent branché sur les vrais services (Mistral, Tavily)."""
     from agent_he.llm.mistral import MistralLLM
@@ -146,6 +230,7 @@ def construire_agent(reglages: Settings) -> Agent:
             "(voir .env.example)."
         )
     dossier = reglages.data_dir
+    magasin = construire_magasin(reglages)
     return Agent(
         llm=MistralLLM(reglages.mistral_api_key.get_secret_value(), reglages.mistral_model),
         recherche=TavilySearch(reglages.tavily_api_key.get_secret_value()),
@@ -157,7 +242,11 @@ def construire_agent(reglages: Settings) -> Agent:
             convention_gouttes_ml=reglages.convention_gouttes_ml,
             recherche_ouverte=reglages.recherche_ouverte,
             max_resultats=reglages.max_resultats,
+            seuil_correspondance=reglages.seuil_correspondance,
         ),
+        magasin=magasin,
+        corpus=charger_et_indexer_si_besoin(dossier / "recettes", magasin),
+        file_validation=file_validation(reglages),
     )
 
 

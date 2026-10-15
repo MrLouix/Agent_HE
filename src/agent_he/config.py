@@ -2,6 +2,7 @@
 
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
 from pydantic import AliasChoices, Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -46,6 +47,9 @@ class Settings(BaseSettings):
     # Recherche web : liste blanche, puis passage ouvert optionnel (sources « non vérifié »)
     recherche_ouverte: bool = False
     max_resultats: int = Field(default=5, ge=1, le=20)
+
+    # Plongements pour l'index du corpus : « local » (hors ligne) ou « mistral »
+    plongeur: Literal["local", "mistral"] = "local"
 
     # Priorité 1 : seuil de similarité pour retenir une recette existante (spec §6)
     seuil_correspondance: float = Field(default=0.8, ge=0.0, le=1.0)
