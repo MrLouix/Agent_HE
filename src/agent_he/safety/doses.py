@@ -6,6 +6,7 @@ concentration : l'écart va dans le sens de la prudence. Les gouttes ne sont qu'
 affichage dérivé, selon une convention gouttes/ml configurable et affichée.
 """
 
+import math
 from dataclasses import dataclass
 
 from agent_he.models import DoseHE, Quantite, Recette
@@ -92,7 +93,9 @@ def dose_pour_concentration(
 ) -> Quantite:
     """Quantité en ml donnant la concentration `pct` dans `base_volume_ml`."""
     del convention_gouttes_ml  # la quantité de référence est en ml ; les gouttes sont dérivées
-    return Quantite(valeur=round(pct * base_volume_ml / 100, 4), unite="ml")
+    # Arrondi par défaut : la concentration obtenue ne dépasse jamais `pct`.
+    ml = math.floor(pct * base_volume_ml / 100 * 10_000 + 1e-9) / 10_000
+    return Quantite(valeur=ml, unite="ml")
 
 
 def mettre_a_echelle(

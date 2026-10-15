@@ -9,6 +9,8 @@ from typing import Any
 from agent_he.llm.base import FakeLLM, Message
 from agent_he.search.base import FakeRecuperateur, FakeSearch, ResultatRecherche
 
+__all__ = ["FakeRecuperateur"]
+
 from aides import FIXTURES
 
 URL_SOMMEIL = "https://www.aroma-zone.com/roll-on-sommeil"
@@ -138,5 +140,26 @@ def llm_compromis() -> FakeLLM:
         inventee["huiles"][0]["source"] = "https://site-invente.example/recette"
         inventee["source"] = "https://site-invente.example/recette"
         return {"recettes": [sommeil, injection, inventee], "indications": []}
+
+    return FakeLLM(repondre)
+
+
+def llm_routeur(
+    selection: dict[str, Any] | None = None,
+    extraction: dict[str, Any] | None = None,
+    analyse: dict[str, Any] | None = None,
+) -> FakeLLM:
+    """Répond selon le schéma demandé : analyse, extraction (fidèle par défaut), synthèse."""
+    fidele = llm_fidele()
+
+    def repondre(messages: list[Message], schema: type) -> Any:
+        nom = schema.__name__
+        if nom == "AnalyseLLM":
+            return analyse or {"besoins": [], "mots_cles": []}
+        if nom == "SelectionSynthese":
+            return selection or {"huiles": []}
+        if extraction is not None:
+            return extraction
+        return fidele._generer(messages, schema)
 
     return FakeLLM(repondre)

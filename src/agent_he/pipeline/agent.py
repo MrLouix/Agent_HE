@@ -1,29 +1,36 @@
-"""Orchestrateur de l'agent (spécification §5, §6).
+"""Orchestrateur de l'agent : arbre de décision de la spécification §6.
 
-Ordre : contrôle de sécurité initial (avant toute recherche) ⇒ recherche web (liste
-blanche, puis passage ouvert optionnel) ⇒ récupération ⇒ extraction (LLM) ⇒
-normalisation ⇒ traçabilité ⇒ contrôles communs ⇒ fiche validée par `assert_fiche_sure`.
+contrôle de sécurité initial (avant toute recherche) ⇒ analyse ⇒ plan ⇒
+1a corpus validé ⇒ 1b recette publiée (web) ⇒ 2 synthèse tracée ⇒ aucune recette sûre.
+Chaque recette passe les contrôles communs ; chaque fiche passe `assert_fiche_sure` ;
+chaque réponse laisse une entrée dans le journal d'audit.
 """
 
 from collections.abc import Collection, Mapping
 from dataclasses import dataclass, field
 
 from agent_he.kb.corpus import RecetteCorpus
-from agent_he.kb.store import Magasin
+from agent_he.kb.store import ErreurIndex, Magasin
 from agent_he.kb.validation import FileValidation
 from agent_he.llm.base import LLM, ErreurLLM
-from agent_he.models import Besoin, Confiance, Demande, Fiche, Recette, Source
-from agent_he.pipeline.analyze import categoriser
+from agent_he.models import Confiance, Demande, EntreeAudit, Fiche, Recette, Source, Voie
+from agent_he.pipeline.analyze import Analyse, analyser
 from agent_he.pipeline.extract import extraire
+from agent_he.pipeline.match import Candidate, Contexte, correspondances_corpus
 from agent_he.pipeline.normalize import normaliser_indication, normaliser_recette
+from agent_he.pipeline.plan import planifier
+from agent_he.pipeline.retrieve import recuperer_pages
+from agent_he.pipeline.synthesize import reservoir, synthetiser
 from agent_he.referentiel.huiles import Referentiel
 from agent_he.referentiel.securite import TableSecurite
-from agent_he.safety.checks import IndicationSource, assert_fiche_sure, controler_recette
+from agent_he.safety.checks import IndicationSource, assert_fiche_sure
 from agent_he.safety.questionnaire import avertissements_profil, he_a_eviter, profil_exclu
 from agent_he.safety.traceability import tracer
 from agent_he.search.base import ErreurRecherche, Page, Recherche, Recuperateur
-from agent_he.search.fetch import contient_injection
 from agent_he.search.reliability import BADGES, Fiabilite
+from agent_he.storage.audit import JournalAudit
+
+__all__ = ["Agent", "Candidate", "Reglages", "Reponse"]
 
 
 @dataclass
@@ -32,6 +39,8 @@ class Reglages:
     recherche_ouverte: bool = False
     max_resultats: int = 5
     seuil_correspondance: float = 0.8
+    volume_synthese_ml: float = 10.0
+    analyse_llm: bool = True
 
 
 @dataclass
@@ -41,17 +50,16 @@ class Reponse:
     controles: list[str] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
     """Déroulé lisible (pages écartées, HE exclues, rejets) pour l'utilisateur et l'audit."""
+    recette_ref: str | None = None
+    """Référence stable de la recette proposée (journal d'usage, favoris)."""
 
 
 @dataclass
-class Candidate:
-    """Recette conforme, prête à être présentée."""
-
-    recette: Recette
-    mode: str
+class _Web:
+    candidates: list[Candidate] = field(default_factory=list)
+    tracees: list[Recette] = field(default_factory=list)
     contradictions: list[str] = field(default_factory=list)
-    avertissements: list[str] = field(default_factory=list)
-    controles: list[str] = field(default_factory=list)
+    indications: list[IndicationSource] = field(default_factory=list)
 
 
 class Agent:
@@ -68,6 +76,7 @@ class Agent:
         magasin: Magasin | None = None,
         corpus: Mapping[str, RecetteCorpus] | None = None,
         file_validation: FileValidation | None = None,
+        audit: JournalAudit | None = None,
     ) -> None:
         self.llm = llm
         self.recherche = recherche
@@ -79,6 +88,7 @@ class Agent:
         self.magasin = magasin
         self.corpus: Mapping[str, RecetteCorpus] = corpus or {}
         self.file_validation = file_validation
+        self.audit = audit
 
     # --- Étapes ---------------------------------------------------------------------
 
@@ -95,164 +105,108 @@ class Agent:
         )
         return Reponse(fiche=fiche, controles=["profil_exclu"])
 
-    def requete(self, demande: Demande) -> str:
-        voies = ", ".join(demande.voies)
-        return f"recette huiles essentielles {demande.besoin} {voies}"
-
-    def recuperer_pages(self, demande: Demande, notes: list[str]) -> list[Page]:
-        requete = self.requete(demande)
-        resultats = self.recherche.rechercher(
-            requete, self.fiabilite.liste_blanche(), self.reglages.max_resultats
-        )
-        if self.reglages.recherche_ouverte:
-            resultats += self.recherche.rechercher(requete, None, self.reglages.max_resultats)
-        pages: list[Page] = []
-        vues: set[str] = set()
-        for resultat in resultats:
-            if resultat.url in vues:
-                continue
-            vues.add(resultat.url)
-            try:
-                page = self.recuperateur.recuperer(resultat.url)
-            except ErreurRecherche as exc:
-                notes.append(str(exc))
-                continue
-            if contient_injection(page.texte):
-                notes.append(f"Page écartée (consignes adressées à une IA) : {page.url}")
-                continue
-            if page.texte.strip():
-                pages.append(page)
-        return pages
-
-    def source(self, page: Page) -> Source:
+    def source(self, url: str, titre: str | None = None, extrait: str = "") -> Source:
         return Source.model_validate(
             {
-                "url": page.url,
-                "titre": page.titre,
-                "confiance": self.fiabilite.confiance(page.url),
-                "extrait": page.texte[:300],
+                "url": url,
+                "titre": titre or url,
+                "confiance": self.fiabilite.confiance(url),
+                "extrait": extrait[:300],
             }
         )
 
-    def besoins(self, demande: Demande) -> list[Besoin]:
-        return categoriser(f"{demande.besoin} {demande.texte_libre}")
-
-    def source_url(self, url: str) -> Source:
-        return Source.model_validate(
-            {"url": url, "titre": url, "confiance": self.fiabilite.confiance(url)}
-        )
-
-    def candidates_corpus(
-        self,
-        demande: Demande,
-        besoins: list[Besoin],
-        exclusions_perso: Mapping[str, str] | Collection[str],
-        notes: list[str],
-        controles: list[str],
-    ) -> list[Candidate]:
-        """Priorité 1a : recettes validées proches du besoin et conformes."""
-        if self.magasin is None or not besoins:
-            return []
-        candidates: list[Candidate] = []
-        texte = f"{' '.join(besoins)} {demande.besoin}"
-        for correspondance in self.magasin.chercher(texte, demande.voies, besoins):
-            entree = self.corpus.get(correspondance.id)
-            if entree is None or correspondance.similarite < self.reglages.seuil_correspondance:
-                continue
-            verdict = controler_recette(
-                entree.recette,
-                demande.questionnaire,
-                self.table,
-                self.referentiel,
-                convention_gouttes_ml=self.reglages.convention_gouttes_ml,
-                exclusions_perso=exclusions_perso,
-            )
-            controles.extend(verdict.controles)
-            if not verdict.conforme or verdict.recette is None:
-                notes.extend(
-                    f"« {entree.recette.nom_recette} » écartée : {r}" for r in verdict.rejets
-                )
-                continue
-            candidates.append(
-                Candidate(
-                    recette=verdict.recette,
-                    mode="validee",
-                    avertissements=verdict.avertissements,
-                    controles=verdict.controles,
-                )
-            )
-        return candidates
-
-    def candidates_web(
-        self,
-        demande: Demande,
-        pages: list[Page],
-        exclusions_perso: Mapping[str, str] | Collection[str],
-        notes: list[str],
-        controles: list[str],
-    ) -> tuple[list[Candidate], list[IndicationSource], list[str]]:
-        """Recettes publiées conformes (priorité 1b), indications et contradictions relevées."""
+    def web(self, ctx: Contexte, pages: list[Page]) -> _Web:
+        """Priorité 1b : recettes publiées conformes, et recettes tracées pour la synthèse."""
+        resultat = _Web()
         if not pages:
-            return [], [], []
+            return resultat
+        demande = ctx.demande
         textes = {p.url: p.texte for p in pages}
         extraction = extraire(self.llm, demande.besoin, [str(v) for v in demande.voies], pages)
-        indications = [
+        resultat.contradictions = list(extraction.contradictions)
+        indications: list[IndicationSource] = [
             i
             for brute in extraction.indications
             if (i := normaliser_indication(brute, self.referentiel, textes)) is not None
         ]
-        candidates: list[Candidate] = []
+        resultat.indications = indications
         for brute in extraction.recettes:
             norm = normaliser_recette(brute, self.referentiel, textes)
-            notes.extend(norm.notes)
+            ctx.notes.extend(norm.notes)
             if norm.recette is None or norm.recette.voie not in demande.voies:
                 continue
-            if norm.huiles_exclues:
-                # Une recette verbatim amputée d'une HE n'est plus la recette publiée.
-                notes.append(f"« {brute.nom_recette} » écartée : HE non retenue(s)")
-                controles.append("normalisation")
-                continue
             trace = tracer(norm.recette, textes, self.referentiel)
-            notes.extend(trace.retraits)
-            if trace.recette is None or trace.huiles_retirees:
+            ctx.notes.extend(trace.retraits)
+            if trace.recette is None:
+                ctx.controles.append("tracabilite")
+                continue
+            # Les HE tracées alimentent la synthèse, même si la recette n'est pas reprise.
+            resultat.tracees.append(trace.recette)
+            if norm.huiles_exclues or trace.huiles_retirees:
                 # Une recette verbatim amputée d'une HE n'est plus la recette publiée.
-                controles.append("tracabilite")
+                ctx.notes.append(f"« {brute.nom_recette} » écartée : HE non retenue(s)")
+                ctx.controles.append("tracabilite")
                 continue
-            verdict = controler_recette(
-                trace.recette,
-                demande.questionnaire,
+            candidate = ctx.controler(trace.recette, "publiee", indications=indications)
+            if candidate is not None:
+                resultat.candidates.append(candidate)
+        return resultat
+
+    def synthese(
+        self, ctx: Contexte, tracees: list[Recette], indications: list[IndicationSource]
+    ) -> Candidate | None:
+        """Priorité 2 : synthèse tracée à partir des seules doses extraites."""
+        doses = reservoir(tracees, self.reglages.convention_gouttes_ml)
+        for voie in ctx.demande.voies:
+            synthese = synthetiser(
+                self.llm,
+                ctx.demande.besoin,
+                voie,
+                doses,
                 self.table,
-                self.referentiel,
+                ctx.demande.questionnaire.age,
+                volume_ml=self.reglages.volume_synthese_ml,
                 convention_gouttes_ml=self.reglages.convention_gouttes_ml,
-                exclusions_perso=exclusions_perso,
-                indications=indications,
+                plafonds_sources=self.plafonds_sources(indications, voie),
             )
-            controles.extend(verdict.controles)
-            if not verdict.conforme or verdict.recette is None:
-                notes.extend(f"« {brute.nom_recette} » rejetée : {r}" for r in verdict.rejets)
+            ctx.notes.extend(synthese.notes)
+            if synthese.recette is None:
                 continue
-            candidates.append(
-                Candidate(
-                    recette=verdict.recette,
-                    mode="publiee",
-                    contradictions=verdict.contradictions,
-                    avertissements=verdict.avertissements,
-                    controles=verdict.controles,
-                )
-            )
-        return candidates, indications, extraction.contradictions
+            candidate = ctx.controler(synthese.recette, "synthese", indications=indications)
+            if candidate is not None:
+                candidate.contradictions = [*synthese.contradictions, *candidate.contradictions]
+                return candidate
+            ctx.notes.append("Synthèse non conforme aux contrôles de sécurité : écartée")
+        return None
+
+    @staticmethod
+    def plafonds_sources(indications: list[IndicationSource], voie: Voie) -> dict[str, float]:
+        plafonds: dict[str, float] = {}
+        for i in indications:
+            if i.type == "plafond" and i.valeur is not None and i.voie in (None, voie):
+                plafonds[i.he_id] = min(i.valeur, plafonds.get(i.he_id, i.valeur))
+        return plafonds
+
+    def ordonner(self, candidates: list[Candidate]) -> list[Candidate]:
+        """Ordre de présentation des recettes conformes (pertinence décroissante)."""
+        return sorted(candidates, key=lambda c: c.pertinence, reverse=True)
 
     def fiche(self, demande: Demande, candidate: Candidate, sources: list[Source]) -> Fiche:
-        sites = sorted({s.domaine for s in sources if str(s.url) in candidate.recette.sources})
+        citees = [s for s in sources if str(s.url) in candidate.recette.sources]
+        sites = ", ".join(sorted({s.domaine for s in citees}))
         badges: list[str] = []
         if candidate.mode == "validee":
-            badges.append(f"✅ Recette validée — source : {', '.join(sites)}")
+            badges.append(f"✅ Recette validée — source : {sites}")
         elif candidate.mode == "publiee":
-            badges.append(f"📄 Recette publiée — source : {', '.join(sites)} (non relue)")
-        for s in sources:
-            if str(s.url) in candidate.recette.sources:
-                badges.append(f"{BADGES[s.confiance]} — {s.domaine}")
+            badges.append(f"📄 Recette publiée — source : {sites} (non relue)")
+        else:
+            badges.append(f"🧪 Synthèse tracée — sources : {sites}")
+        badges += [f"{BADGES[s.confiance]} — {s.domaine}" for s in citees]
         avertissements = [*avertissements_profil(demande.questionnaire), *candidate.avertissements]
+        if any(s.confiance == Confiance.NON_VERIFIE for s in citees):
+            avertissements.append(
+                "Source non vérifiée : dosages croisés avec la table de sécurité uniquement."
+            )
         return Fiche.model_validate(
             {
                 "mode": candidate.mode,
@@ -284,67 +238,116 @@ class Agent:
         demande: Demande,
         exclusions_perso: Mapping[str, str] | Collection[str] = (),
     ) -> Reponse:
+        reponse = self._repondre(demande, exclusions_perso)
+        if self.audit is not None:
+            self.audit.enregistrer(
+                EntreeAudit(
+                    demande=demande,
+                    sources=[str(s.url) for s in reponse.sources],
+                    mode=reponse.fiche.mode,
+                    controles_declenches=sorted(set(reponse.controles)),
+                )
+            )
+        return reponse
+
+    def _repondre(
+        self, demande: Demande, exclusions_perso: Mapping[str, str] | Collection[str]
+    ) -> Reponse:
         refus = self.refus(demande)
         if refus is not None:
             return refus
 
-        notes: list[str] = []
-        controles: list[str] = []
-        besoins = self.besoins(demande)
-
-        corpus = self.candidates_corpus(demande, besoins, exclusions_perso, notes, controles)
-        if corpus:
-            sources = [self.source_url(u) for u in corpus[0].recette.sources]
-            return self.finaliser(
-                demande, corpus[0], sources, [], exclusions_perso, controles, notes
-            )
-
-        try:
-            pages = self.recuperer_pages(demande, notes)
-            candidates, _, contradictions = self.candidates_web(
-                demande, pages, exclusions_perso, notes, controles
-            )
-        except (ErreurRecherche, ErreurLLM) as exc:
-            motif = f"Recherche impossible : {exc}"
-            return Reponse(fiche=self.aucune(motif), controles=controles, notes=notes)
-        sources = [self.source(p) for p in pages]
-        if not candidates:
-            return Reponse(self.aucune(self.motif_aucune(notes)), sources, controles, notes)
-
-        choisie = candidates[0]
-        if self.file_validation is not None:
-            confiance = min(
-                (s.confiance for s in sources if str(s.url) in choisie.recette.sources),
-                key=list(Confiance).index,
-                default=Confiance.NON_VERIFIE,
-            )
-            cid = self.file_validation.ajouter(choisie.recette, besoins, confiance)
-            notes.append(f"Recette ajoutée à la file de validation ({cid})")
-        return self.finaliser(
-            demande, choisie, sources, contradictions, exclusions_perso, controles, notes
+        ctx = Contexte(
+            demande=demande,
+            table=self.table,
+            referentiel=self.referentiel,
+            convention_gouttes_ml=self.reglages.convention_gouttes_ml,
+            exclusions_perso=exclusions_perso,
+        )
+        analyse = (
+            analyser(self.llm, demande.besoin, demande.texte_libre)
+            if self.reglages.analyse_llm
+            else analyser(None, demande.besoin, demande.texte_libre)
         )
 
-    def finaliser(
-        self,
-        demande: Demande,
-        candidate: Candidate,
-        sources: list[Source],
-        contradictions: list[str],
-        exclusions_perso: Mapping[str, str] | Collection[str],
-        controles: list[str],
-        notes: list[str],
-    ) -> Reponse:
+        # 1a — corpus validé, sans aucun appel web.
+        corpus = self.corpus_valide(ctx, analyse)
+        if corpus:
+            choisie = self.ordonner(corpus)[0]
+            sources = [self.source(u) for u in choisie.recette.sources]
+            return self.finaliser(ctx, choisie, sources)
+
+        # 1b — recettes publiées, puis 2 — synthèse tracée.
+        try:
+            pages = recuperer_pages(
+                self.recherche,
+                self.recuperateur,
+                planifier(demande, analyse),
+                self.fiabilite.liste_blanche(),
+                ouverte=self.reglages.recherche_ouverte,
+                max_resultats=self.reglages.max_resultats,
+                notes=ctx.notes,
+            )
+            web = self.web(ctx, pages)
+            sources = [self.source(p.url, p.titre, p.texte) for p in pages]
+            if web.candidates:
+                choisie = self.ordonner(web.candidates)[0]
+                choisie.contradictions = [*web.contradictions, *choisie.contradictions]
+                self.mettre_en_file(choisie, analyse, sources, ctx)
+                return self.finaliser(ctx, choisie, sources)
+            synthese = self.synthese(ctx, web.tracees, web.indications)
+            if synthese is not None:
+                synthese.contradictions = [*web.contradictions, *synthese.contradictions]
+        except (ErreurRecherche, ErreurLLM) as exc:
+            ctx.notes.append(str(exc))
+            fiche = self.aucune(f"Recherche impossible : {exc}")
+            return Reponse(fiche=fiche, controles=ctx.controles, notes=ctx.notes)
+        if synthese is not None:
+            return self.finaliser(ctx, synthese, sources)
+        fiche = self.aucune(self.motif_aucune(ctx.notes))
+        return Reponse(fiche, sources, ctx.controles, ctx.notes)
+
+    def corpus_valide(self, ctx: Contexte, analyse: Analyse) -> list[Candidate]:
+        if self.magasin is None or not analyse.besoins:
+            return []
+        texte = " ".join([*(str(b) for b in analyse.besoins), ctx.demande.besoin])
+        try:
+            return correspondances_corpus(
+                ctx,
+                self.magasin,
+                self.corpus,
+                analyse.besoins,
+                texte,
+                self.reglages.seuil_correspondance,
+            )
+        except ErreurIndex as exc:
+            ctx.notes.append(str(exc))
+            return []
+
+    def mettre_en_file(
+        self, choisie: Candidate, analyse: Analyse, sources: list[Source], ctx: Contexte
+    ) -> None:
+        if self.file_validation is None:
+            return
+        confiance = min(
+            (s.confiance for s in sources if str(s.url) in choisie.recette.sources),
+            key=list(Confiance).index,
+            default=Confiance.NON_VERIFIE,
+        )
+        cid = self.file_validation.ajouter(choisie.recette, analyse.besoins, confiance)
+        ctx.notes.append(f"Recette ajoutée à la file de validation ({cid})")
+
+    def finaliser(self, ctx: Contexte, candidate: Candidate, sources: list[Source]) -> Reponse:
         """Construit la fiche et la soumet au validateur final (dernier rempart)."""
-        fiche = self.fiche(demande, candidate, sources)
-        fiche.contradictions.extend(contradictions)
+        fiche = self.fiche(ctx.demande, candidate, sources)
         assert_fiche_sure(
             fiche,
-            demande.questionnaire,
+            ctx.demande.questionnaire,
             self.table,
             self.referentiel,
-            voies_demandees=demande.voies,
-            exclusions_perso=set(exclusions_perso),
+            voies_demandees=ctx.demande.voies,
+            exclusions_perso=set(ctx.exclusions_perso),
             sources_recuperees={str(s.url) for s in sources},
         )
         utilisees = [s for s in sources if str(s.url) in candidate.recette.sources]
-        return Reponse(fiche, utilisees, controles, notes)
+        return Reponse(fiche, utilisees, ctx.controles, ctx.notes, recette_ref=candidate.ref)

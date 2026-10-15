@@ -75,7 +75,7 @@ def test_injection_sans_aucune_cannelle_meme_si_le_llm_obeit(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Acceptation phase 3 : même un LLM compromis ne fait pas apparaître de cannelle."""
-    import agent_he.pipeline.agent as module
+    import agent_he.pipeline.retrieve as module
 
     monkeypatch.setattr(module, "contient_injection", lambda texte: False)
     reponse = agent(web.llm_compromis()).repondre(demande())

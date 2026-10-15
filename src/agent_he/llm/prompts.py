@@ -59,3 +59,16 @@ def messages_synthese(besoin: str, voie: str, doses_json: str) -> list[Message]:
         f"{doses_json}"
     )
     return [{"role": "system", "content": SYSTEME}, {"role": "user", "content": consigne}]
+
+
+def messages_analyse(besoin: str, texte_libre: str) -> list[Message]:
+    from agent_he.models import Besoin
+
+    categories = ", ".join(str(b) for b in Besoin)
+    consigne = (
+        f"Demande : {besoin}\nPrécisions : {texte_libre or '—'}\n\n"
+        f"Classe la demande dans une ou plusieurs de ces catégories : {categories}. "
+        "Donne aussi au plus 5 mots-clés de recherche en français. Tu ne donnes aucun "
+        "conseil, aucune huile et aucun dosage."
+    )
+    return [{"role": "system", "content": SYSTEME}, {"role": "user", "content": consigne}]

@@ -25,6 +25,7 @@ from agent_he.referentiel.securite import (
     valider,
     verifier,
 )
+from agent_he.storage.audit import JournalAudit
 from agent_he.storage.db import connecter
 
 app = typer.Typer(help="Agent personnel d'aide aux synergies d'huiles essentielles.")
@@ -247,6 +248,7 @@ def construire_agent(reglages: Settings) -> Agent:
         magasin=magasin,
         corpus=charger_et_indexer_si_besoin(dossier / "recettes", magasin),
         file_validation=file_validation(reglages),
+        audit=JournalAudit(connecter(reglages.db_path)),
     )
 
 

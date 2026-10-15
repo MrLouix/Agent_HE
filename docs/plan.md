@@ -242,11 +242,11 @@ Tests écrits **avant** le code ; ils ne seront jamais désactivés.
 
 Implémente l'arbre de décision de la spec §6.
 
-- [ ] `agent.py` : contrôle sécurité initial **avant** toute recherche ⇒ `analyze` ⇒ `plan` ⇒ `retrieve` (corpus puis web) ⇒ `extract` ⇒ `normalize` ⇒ `match` / `synthesize` ⇒ `checks` ⇒ classement personnalisé ⇒ `Fiche` ⇒ journal d'audit.
-- [ ] `match.py` : filtres stricts (besoin, voie, profil) + similarité ≥ seuil (configurable ; calibré en phase 9). 1a corpus prioritaire sur 1b web ; 1b ⇒ ajout à la file de validation.
-- [ ] `synthesize.py` : le LLM ne reçoit que les doses extraites normalisées et renvoie une sélection avec `sources` ; quantités recalculées par `doses.py` ; avertissement permanent.
-- [ ] Bascule : verbatim rejetée ⇒ synthèse ; synthèse non conforme ⇒ `mode="aucune"` avec explication.
-- [ ] `storage/audit.py` : une entrée par réponse.
+- [x] `agent.py` : contrôle sécurité initial **avant** toute recherche ⇒ `analyze` ⇒ `plan` ⇒ `retrieve` (corpus puis web) ⇒ `extract` ⇒ `normalize` ⇒ `match` / `synthesize` ⇒ `checks` ⇒ classement personnalisé ⇒ `Fiche` ⇒ journal d'audit.
+- [x] `match.py` : filtres stricts (besoin, voie, profil) + similarité ≥ seuil (configurable ; calibré en phase 9). 1a corpus prioritaire sur 1b web ; 1b ⇒ ajout à la file de validation.
+- [x] `synthesize.py` : le LLM ne reçoit que les doses extraites normalisées et renvoie une sélection avec `sources` ; quantités recalculées par `doses.py` ; avertissement permanent.
+- [x] Bascule : verbatim rejetée ⇒ synthèse ; synthèse non conforme ⇒ `mode="aucune"` avec explication.
+- [x] `storage/audit.py` : une entrée par réponse.
 
 **Acceptation** : tests d'intégration sur fixtures couvrant 1a, 1b, 2, refus, verbatim surdosée ⇒ synthèse, contradiction, aucune recette sûre. Chaque fiche passe `assert_fiche_sure`.
 
