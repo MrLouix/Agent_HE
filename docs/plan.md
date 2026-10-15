@@ -254,13 +254,13 @@ Implémente l'arbre de décision de la spec §6.
 
 ### Phase 6 — Interface Streamlit (~1 j)
 
-- [ ] Bandeau sécurité permanent.
-- [ ] Barre latérale : besoin, voie(s), questionnaire (obligatoire avant recherche).
-- [ ] Chat libre ; si le filet mots-clés détecte un risque non coché ⇒ demande de confirmation.
-- [ ] Onglets : Fiche (% / ml / gouttes + convention), Sources (badges), Produits, Journal (complété en phase 7), Historique, Favoris, File de validation.
-- [ ] Refus explicatif : motif + HE à éviter + renvoi vers un professionnel.
-- [ ] Export Markdown (PDF optionnel).
-- [ ] Progression par étape (`st.status`), messages d'erreur clairs (clé API absente, aucune source).
+- [x] Bandeau sécurité permanent.
+- [x] Barre latérale : besoin, voie(s), questionnaire (obligatoire avant recherche).
+- [x] Chat libre ; si le filet mots-clés détecte un risque non coché ⇒ demande de confirmation.
+- [x] Onglets : Fiche (% / ml / gouttes + convention), Sources (badges), Produits (phase 8), Journal (phase 7), Historique, Favoris, File de validation.
+- [x] Refus explicatif : motif + HE à éviter + renvoi vers un professionnel.
+- [x] Export Markdown (PDF non implémenté, optionnel).
+- [x] Progression par étape (`st.status`), messages d'erreur clairs (clé API absente, aucune source).
 
 **Acceptation** : test `streamlit.testing.v1.AppTest` (agent simulé) : bandeau présent, recherche bloquée sans questionnaire, avertissement visible en mode synthèse, refus explicatif affiché pour une grossesse.
 

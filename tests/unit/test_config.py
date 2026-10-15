@@ -67,3 +67,11 @@ def test_reglages_hors_bornes_refuses(
     monkeypatch.setenv(variable, valeur)
     with pytest.raises(ValidationError):
         Settings()
+
+
+def test_cle_vide_consideree_absente(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("MISTRAL_API_KEY", "")
+    monkeypatch.setenv("TAVILY_API_KEY", "  ")
+    reglages = Settings()
+    assert reglages.mistral_api_key is None
+    assert reglages.tavily_api_key is None

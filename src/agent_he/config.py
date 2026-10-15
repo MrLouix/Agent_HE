@@ -4,7 +4,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import AliasChoices, Field, SecretStr
+from pydantic import AliasChoices, Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -32,6 +32,14 @@ class Settings(BaseSettings):
         validation_alias=AliasChoices("TAVILY_API_KEY", "AGENT_HE_TAVILY_API_KEY"),
     )
     mistral_model: str = "mistral-large-latest"
+
+    @field_validator("mistral_api_key", "tavily_api_key", mode="before")
+    @classmethod
+    def _cle_vide_absente(cls, valeur: object) -> object:
+        """`MISTRAL_API_KEY=` (copie brute de .env.example) vaut « clé absente »."""
+        if isinstance(valeur, str) and not valeur.strip():
+            return None
+        return valeur
 
     # Personne qui utilise l'outil (traçabilité des vérifications et validations)
     utilisateur: str = "moi"

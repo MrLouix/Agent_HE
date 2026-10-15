@@ -247,3 +247,16 @@ def test_stats_he_bornes() -> None:
     with pytest.raises(ValidationError):
         StatsHE(he_id="lavande_vraie", nb_usages=-1)
     StatsHE(he_id="lavande_vraie", nb_usages=0)
+
+
+def test_champs_calcules_relus_sans_erreur() -> None:
+    source = Source.model_validate(
+        {"url": "https://www.aroma-zone.com/x", "titre": "x", "confiance": "commercial"}
+    )
+    assert Source.model_validate_json(source.model_dump_json()) == source
+    relue = Source.model_validate({**source.model_dump(), "domaine": "pirate.example"})
+    assert relue.domaine == "aroma-zone.com"
+    produit = Produit.model_validate(
+        {"boutique": "B", "nom": "L", "volume_ml": 10, "prix": 5, "url": "https://b.example/l"}
+    )
+    assert Produit.model_validate(produit.model_dump()).prix_ml == pytest.approx(0.5)

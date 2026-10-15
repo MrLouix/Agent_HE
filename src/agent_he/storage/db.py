@@ -23,7 +23,9 @@ def connecter(chemin: Path | str) -> sqlite3.Connection:
     """Ouvre la base (créée si besoin) ; `":memory:"` pour les tests."""
     if isinstance(chemin, Path):
         chemin.parent.mkdir(parents=True, exist_ok=True)
-    connexion = sqlite3.connect(str(chemin))
+    # Streamlit réexécute le script dans des threads différents : la connexion conservée
+    # en session doit pouvoir y être utilisée (outil mono-utilisateur, accès séquentiels).
+    connexion = sqlite3.connect(str(chemin), check_same_thread=False)
     connexion.row_factory = sqlite3.Row
     connexion.execute("PRAGMA foreign_keys = ON")
     connexion.executescript(SCHEMA)

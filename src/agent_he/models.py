@@ -8,7 +8,7 @@ référence (plafonds, drapeaux, traçabilité) relèvent du module `safety`.
 
 from datetime import UTC, datetime
 from enum import StrEnum
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal
 from uuid import UUID, uuid4
 
 from pydantic import (
@@ -38,6 +38,15 @@ class Modele(BaseModel):
     """Base commune : tout champ inconnu est refusé."""
 
     model_config = ConfigDict(extra="forbid")
+
+    @model_validator(mode="before")
+    @classmethod
+    def _ignorer_champs_calcules(cls, donnees: Any) -> Any:
+        """Un champ calculé relu depuis une sérialisation est ignoré (il est recalculé)."""
+        calcules = cls.model_computed_fields
+        if calcules and isinstance(donnees, dict):
+            return {k: v for k, v in donnees.items() if k not in calcules}
+        return donnees
 
 
 # --- Énumérations ---------------------------------------------------------------
