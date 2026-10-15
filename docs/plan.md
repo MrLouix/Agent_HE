@@ -166,17 +166,20 @@ class StatsHE:        he_id; nb_usages; efficacite_moy; odeur_moy; nb_reactions_
 ### Phase 1 — Données de référence (démarrage ~1,5 j, puis continu)
 
 - [ ] `data/huiles.yaml` : ~30 HE courantes (noms FR/EN, latin, chémotypes, partie distillée).
-- [ ] `data/securite.yaml` : plafonds par voie, plafond total par voie, drapeaux, profils interdits, valeurs pédiatriques / plus de 65 ans si disponibles, **référence de page** pour chaque valeur.
+- [ ] `data/securite.yaml` : entrées au format de [`regle-table-securite.md`](./regle-table-securite.md) (une entrée = une valeur, citation exacte, page, statut).
   - ⚠️ Valeurs saisies depuis *Essential Oil Safety* (Tisserand & Young, 2ᵉ éd.) et relues ; jamais générées par un LLM.
 - [ ] `data/domaines.yaml` : 4 niveaux de confiance (spec §4).
 - [ ] `data/mots_cles_risque.yaml`.
 - [ ] `referentiel/huiles.py` : `normaliser(nom) -> he_id | None` (accents, casse, synonymes FR/EN, latin).
-- [ ] `referentiel/securite.py` : chargement + **validation de schéma** (toute entrée a une référence ; tout `he_id` existe dans le référentiel).
+- [ ] `referentiel/securite.py` : chargement + contrôles automatiques de la règle (§9) ; application selon le statut (§6) ; empreintes SHA-256 (§7).
+- [ ] Commandes `agent-he securite verifier`, `agent-he securite valider` et `agent-he securite rapport` (rapport d'audit Markdown imprimable, couverture, entrées à traiter).
 - [ ] 5 à 10 premières recettes validées dans `data/recettes/`.
 
 **Acceptation** :
 - `normaliser("lavande fine") == normaliser("True lavender") == normaliser("Lavandula angustifolia")`.
-- Un test échoue si une entrée de sécurité n'a pas de référence ou pointe vers une HE inconnue.
+- Un test échoue si une entrée de sécurité n'a pas de citation, pointe vers une HE inconnue ou est `valide` sans vérification conforme.
+- Un plafond en `brouillon` n'est jamais appliqué ; un drapeau en `brouillon` l'est.
+- La modification d'un champ de fond d'une entrée validée invalide son empreinte et la rend inutilisable.
 
 ---
 

@@ -91,22 +91,15 @@ Rôle : reconnaître qu'« lavande fine », « true lavender » et *Lavandula an
 
 ### 3.2 Table de sécurité (`data/securite.yaml`)
 
-Plus qu'un plafond de dilution : chaque HE porte ses plafonds **par voie** et ses **drapeaux de risque**.
+Plus qu'un plafond de dilution : la table porte des plafonds **par voie et par population**, des plafonds totaux de mélange, des **drapeaux de risque** et des **contre-indications par profil**.
 
-```yaml
-- id: lavande_vraie
-  plafonds:            # % max dans le mélange final, par voie
-    cutanee: <valeur>
-    bain: <valeur>
-  drapeaux: []         # ex. phototoxique, dermocaustique, neurotoxique, hormone_like,
-                       #     allergene, interaction_medicament
-  interdits_profils: [] # ex. grossesse, enfant_moins_6_ans, epilepsie, asthme
-  reference: "Tisserand & Young, Essential Oil Safety, 2e éd., p. <n>"
-```
+Le format, les sources autorisées, les règles d'interprétation et le cycle saisie → vérification → validation sont définis dans [`regle-table-securite.md`](./regle-table-securite.md). En résumé :
 
-Règles :
-- **Les valeurs sont saisies depuis l'ouvrage de référence, avec la page**, et relues. Aucune valeur ne provient d'un LLM.
-- **Fail closed** : une HE absente de la table, ou sans plafond pour la voie demandée, **ne reçoit aucun dosage**.
+- **une entrée = une valeur**, avec l'ouvrage, la page, la localisation et la **citation exacte** de la source ;
+- **aucune valeur ne provient d'un LLM** ; une transcription assistée reste un brouillon vérifié contre le livre ;
+- un plafond (qui autorise un dosage) n'est utilisé qu'une fois **validé** ; un drapeau ou une contre-indication (qui restreint) s'applique dès sa saisie ;
+- une **empreinte** de validation rend visible toute modification ultérieure d'une valeur validée, qui redevient alors inutilisable ;
+- **fail closed** : une HE sans plafond validé pour la voie et la population demandées **ne reçoit aucun dosage**.
 - Drapeaux à couvrir au minimum : phototoxicité (agrumes par expression), dermocausticité (cannelle, girofle, origan…), neurotoxicité des cétones (sauge officinale, romarin à camphre…), effet hormone-like (sauge sclarée…), allergènes, interactions médicamenteuses (ex. salicylate de méthyle et anticoagulants).
 
 ### 3.3 Corpus de recettes validées (`data/recettes/`)

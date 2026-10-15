@@ -6,6 +6,7 @@ fiables, contrôles de sécurité déterministes, journal d'usage.
 - Spécification : [`docs/specification.md`](docs/specification.md)
 - Plan de codage : [`docs/plan.md`](docs/plan.md)
 - Plan futur : [`docs/plan-futur.md`](docs/plan-futur.md)
+- Règle de la table de sécurité : [`docs/regle-table-securite.md`](docs/regle-table-securite.md)
 
 ## Installation
 
