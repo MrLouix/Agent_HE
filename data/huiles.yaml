@@ -1,0 +1,277 @@
+# Référentiel des huiles essentielles (spécification §3.1).
+#
+# Une entrée par HE et, lorsque le chémotype change l'usage ou la sécurité, par chémotype
+# (ex. romarin à cinéole / à camphre). Ce fichier ne contient que de la nomenclature :
+# aucune valeur de sécurité (plafond, drapeau) — celles-ci vivent dans securite.yaml.
+#
+# Champs :
+#   id                identifiant stable, utilisé partout (securite.yaml, recettes, journal)
+#   nom_latin         nom botanique de référence
+#   synonymes_latins  autres noms botaniques acceptés (anciens noms, graphies)
+#   noms_fr, noms_en  noms usuels
+#   partie_distillee  partie de la plante
+#   chemotypes        chémotypes reconnus pour cette entrée (jamais confondus avec le nom latin)
+
+- id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  synonymes_latins: [Lavandula officinalis, Lavandula vera]
+  noms_fr: [Lavande vraie, Lavande fine, Lavande officinale]
+  noms_en: [True lavender, English lavender, Lavender]
+  partie_distillee: sommités fleuries
+  chemotypes: [linalol, acétate de linalyle]
+
+- id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  synonymes_latins: [Lavandula spica]
+  noms_fr: [Lavande aspic]
+  noms_en: [Spike lavender]
+  partie_distillee: sommités fleuries
+  chemotypes: [linalol, "1,8-cinéole", camphre]
+
+- id: lavandin_super
+  nom_latin: Lavandula x intermedia
+  synonymes_latins: [Lavandula x hybrida, Lavandula x burnatii]
+  noms_fr: [Lavandin super, Lavandin]
+  noms_en: [Lavandin]
+  partie_distillee: sommités fleuries
+  chemotypes: [acétate de linalyle, linalol]
+
+- id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  synonymes_latins: []
+  noms_fr: [Arbre à thé, Tea tree]
+  noms_en: [Tea tree]
+  partie_distillee: feuilles
+  chemotypes: [terpinène-4-ol]
+
+- id: eucalyptus_radie
+  nom_latin: Eucalyptus radiata
+  synonymes_latins: []
+  noms_fr: [Eucalyptus radié]
+  noms_en: [Narrow-leaved peppermint, Eucalyptus radiata]
+  partie_distillee: feuilles
+  chemotypes: ["1,8-cinéole"]
+
+- id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  synonymes_latins: []
+  noms_fr: [Eucalyptus globuleux]
+  noms_en: [Blue gum, Tasmanian blue gum, Eucalyptus globulus]
+  partie_distillee: feuilles
+  chemotypes: ["1,8-cinéole"]
+
+- id: menthe_poivree
+  nom_latin: Mentha x piperita
+  synonymes_latins: []
+  noms_fr: [Menthe poivrée]
+  noms_en: [Peppermint]
+  partie_distillee: parties aériennes
+  chemotypes: [menthol, menthone]
+
+- id: ravintsara
+  nom_latin: Cinnamomum camphora
+  synonymes_latins: []
+  noms_fr: [Ravintsara]
+  noms_en: [Ravintsara]
+  partie_distillee: feuilles
+  chemotypes: ["1,8-cinéole"]
+
+- id: citron
+  nom_latin: Citrus limon
+  synonymes_latins: [Citrus limonum]
+  noms_fr: [Citron, Citronnier]
+  noms_en: [Lemon]
+  partie_distillee: zeste (expression)
+  chemotypes: [limonène]
+
+- id: orange_douce
+  nom_latin: Citrus sinensis
+  synonymes_latins: []
+  noms_fr: [Orange douce]
+  noms_en: [Sweet orange]
+  partie_distillee: zeste (expression)
+  chemotypes: [limonène]
+
+- id: bergamote
+  nom_latin: Citrus bergamia
+  synonymes_latins: []
+  noms_fr: [Bergamote, Bergamotier]
+  noms_en: [Bergamot]
+  partie_distillee: zeste (expression)
+  chemotypes: [limonène, acétate de linalyle]
+
+- id: mandarine
+  nom_latin: Citrus reticulata
+  synonymes_latins: [Citrus deliciosa]
+  noms_fr: [Mandarine, Mandarinier]
+  noms_en: [Mandarin, Tangerine]
+  partie_distillee: zeste (expression)
+  chemotypes: [limonène]
+
+- id: pamplemousse
+  nom_latin: Citrus paradisi
+  synonymes_latins: []
+  noms_fr: [Pamplemousse]
+  noms_en: [Grapefruit]
+  partie_distillee: zeste (expression)
+  chemotypes: [limonène]
+
+- id: petit_grain_bigarade
+  nom_latin: Citrus aurantium
+  synonymes_latins: []
+  noms_fr: [Petit grain bigarade, Petitgrain]
+  noms_en: [Petitgrain, Petitgrain bigarade]
+  partie_distillee: feuilles
+  chemotypes: [acétate de linalyle]
+
+- id: neroli
+  nom_latin: Citrus aurantium
+  synonymes_latins: []
+  noms_fr: [Néroli, Fleur d'oranger]
+  noms_en: [Neroli]
+  partie_distillee: fleurs
+  chemotypes: [linalol]
+
+- id: camomille_romaine
+  nom_latin: Chamaemelum nobile
+  synonymes_latins: [Anthemis nobilis]
+  noms_fr: [Camomille romaine, Camomille noble]
+  noms_en: [Roman chamomile]
+  partie_distillee: fleurs
+  chemotypes: [esters]
+
+- id: ylang_ylang
+  nom_latin: Cananga odorata
+  synonymes_latins: []
+  noms_fr: [Ylang-ylang]
+  noms_en: [Ylang-ylang]
+  partie_distillee: fleurs
+  chemotypes: [germacrène D, acétate de benzyle]
+
+- id: geranium_rosat
+  nom_latin: Pelargonium graveolens
+  synonymes_latins: [Pelargonium x asperum]
+  noms_fr: [Géranium rosat, Géranium bourbon, Géranium d'Égypte]
+  noms_en: [Geranium, Rose geranium]
+  partie_distillee: feuilles
+  chemotypes: [citronellol, géraniol]
+
+- id: palmarosa
+  nom_latin: Cymbopogon martinii
+  synonymes_latins: []
+  noms_fr: [Palmarosa]
+  noms_en: [Palmarosa]
+  partie_distillee: parties aériennes
+  chemotypes: [géraniol]
+
+- id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  synonymes_latins: [Salvia rosmarinus]
+  noms_fr: [Romarin à cinéole]
+  noms_en: [Rosemary cineole]
+  partie_distillee: sommités fleuries
+  chemotypes: ["1,8-cinéole"]
+
+- id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  synonymes_latins: [Salvia rosmarinus]
+  noms_fr: [Romarin à camphre]
+  noms_en: [Rosemary camphor]
+  partie_distillee: sommités fleuries
+  chemotypes: [camphre]
+
+- id: romarin_verbenone
+  nom_latin: Rosmarinus officinalis
+  synonymes_latins: [Salvia rosmarinus]
+  noms_fr: [Romarin à verbénone]
+  noms_en: [Rosemary verbenone]
+  partie_distillee: sommités fleuries
+  chemotypes: [verbénone]
+
+- id: sauge_officinale
+  nom_latin: Salvia officinalis
+  synonymes_latins: []
+  noms_fr: [Sauge officinale]
+  noms_en: [Sage, Dalmatian sage, Common sage]
+  partie_distillee: feuilles
+  chemotypes: [thuyone]
+
+- id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  synonymes_latins: []
+  noms_fr: [Sauge sclarée, Sauge musquée]
+  noms_en: [Clary sage]
+  partie_distillee: sommités fleuries
+  chemotypes: [acétate de linalyle, linalol]
+
+- id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  synonymes_latins: [Cinnamomum zeylanicum]
+  noms_fr: [Cannelle de Ceylan, Cannelle]
+  noms_en: [Cinnamon bark, Cinnamon]
+  partie_distillee: écorce
+  chemotypes: [cinnamaldéhyde]
+
+- id: girofle
+  nom_latin: Syzygium aromaticum
+  synonymes_latins: [Eugenia caryophyllus]
+  noms_fr: [Clou de girofle, Giroflier, Girofle]
+  noms_en: [Clove bud, Clove]
+  partie_distillee: boutons floraux
+  chemotypes: [eugénol]
+
+- id: origan_compact
+  nom_latin: Origanum compactum
+  synonymes_latins: []
+  noms_fr: [Origan compact, Origan]
+  noms_en: [Oregano]
+  partie_distillee: sommités fleuries
+  chemotypes: [carvacrol]
+
+- id: thym_linalol
+  nom_latin: Thymus vulgaris
+  synonymes_latins: []
+  noms_fr: [Thym à linalol]
+  noms_en: [Thyme linalool]
+  partie_distillee: sommités fleuries
+  chemotypes: [linalol]
+
+- id: thym_thymol
+  nom_latin: Thymus vulgaris
+  synonymes_latins: []
+  noms_fr: [Thym à thymol]
+  noms_en: [Thyme thymol, Red thyme]
+  partie_distillee: sommités fleuries
+  chemotypes: [thymol]
+
+- id: gaultherie
+  nom_latin: Gaultheria procumbens
+  synonymes_latins: []
+  noms_fr: [Gaulthérie couchée, Gaulthérie, Wintergreen]
+  noms_en: [Wintergreen]
+  partie_distillee: feuilles
+  chemotypes: [salicylate de méthyle]
+
+- id: cedre_atlas
+  nom_latin: Cedrus atlantica
+  synonymes_latins: []
+  noms_fr: [Cèdre de l'Atlas]
+  noms_en: [Atlas cedarwood, Cedarwood Atlas]
+  partie_distillee: bois
+  chemotypes: [himachalènes]
+
+- id: marjolaine_coquilles
+  nom_latin: Origanum majorana
+  synonymes_latins: [Majorana hortensis]
+  noms_fr: [Marjolaine à coquilles, Marjolaine]
+  noms_en: [Sweet marjoram, Marjoram]
+  partie_distillee: sommités fleuries
+  chemotypes: [terpinène-4-ol]
+
+- id: encens
+  nom_latin: Boswellia carterii
+  synonymes_latins: [Boswellia sacra]
+  noms_fr: [Encens, Oliban]
+  noms_en: [Frankincense, Olibanum]
+  partie_distillee: résine
+  chemotypes: [alpha-pinène]

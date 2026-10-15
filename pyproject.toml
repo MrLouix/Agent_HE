@@ -7,13 +7,19 @@ requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.7",
     "pydantic-settings>=2.3",
+    "pyyaml>=6.0.3",
+    "typer>=0.27.3",
 ]
+
+[project.scripts]
+agent-he = "agent_he.cli:app"
 
 [dependency-groups]
 dev = [
     "mypy>=1.10",
     "pytest>=8.2",
     "ruff>=0.5",
+    "types-pyyaml>=6.0.12.20260906",
 ]
 
 [build-system]
@@ -34,6 +40,9 @@ select = ["E", "W", "F", "I", "UP", "B", "SIM", "RUF"]
 # (« », ’, …) sont légitimes dans les chaînes et commentaires.
 ignore = ["RUF001", "RUF002", "RUF003"]
 
+[tool.ruff.lint.isort]
+known-local-folder = ["aides"]
+
 [tool.mypy]
 python_version = "3.11"
 strict = true
@@ -47,6 +56,7 @@ init_typed = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --strict-markers"
+pythonpath = ["tests"]
 markers = [
     "live: tests qui appellent de vrais services externes (lancés manuellement)",
 ]

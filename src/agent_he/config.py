@@ -32,6 +32,9 @@ class Settings(BaseSettings):
     )
     mistral_model: str = "mistral-large-latest"
 
+    # Personne qui utilise l'outil (traçabilité des vérifications et validations)
+    utilisateur: str = "moi"
+
     # Emplacements locaux
     data_dir: Path = Path("data")
     db_path: Path = Path("data/agent_he.sqlite")

@@ -1,0 +1,47 @@
+# Filet de détection des risques dans le texte libre (spécification §8).
+# Ce n'est qu'un filet supplémentaire : une détection déclenche une demande de confirmation,
+# jamais une décision. Les motifs sont des expressions régulières appliquées au texte
+# normalisé (minuscules, sans accents).
+
+grossesse_allaitement:
+  - '\benceinte\b'
+  - '\bgrossesse\b'
+  - '\b\d{1,2}\s*sa\b'           # « 12 SA » (semaines d'aménorrhée)
+  - '\bsemaines? d.amenorrhee\b'
+  - '\btrimestre\b'
+  - '\ballait'                    # allaite, allaitement, allaitante
+  - '\bnourrisson\b'
+  - '\bbebe\b'
+  - '\bpregnan'
+  - '\bbreastfeed'
+
+epilepsie:
+  - '\bepilep'
+  - '\bconvulsion'
+  - '\bcrises? d.epilepsie\b'
+
+asthme:
+  - '\basthm'
+  - '\bbronchospasme'
+
+traitement:
+  - '\banticoagulant'
+  - '\bmedicament'
+  - '\btraitement\b'
+  - '\bchimio'
+  - '\baspirine\b'
+  - '\bwarfarine\b'
+
+pathologie_hormonale:
+  - '\bcancer du sein\b'
+  - '\bhormono'
+  - '\bendometriose\b'
+
+age:
+  # Mentions d'âge d'enfant : « 4 ans », « mon fils de 2 ans », « 18 mois ».
+  - '\b(1[0-7]|[0-9])\s*ans?\b'
+  - '\b\d{1,2}\s*mois\b'
+  - '\benfant'
+  - '\bfils\b'
+  - '\bfille\b'
+  - '\bado'

@@ -1,0 +1,12 @@
+# Table de sécurité (spécification §3.2).
+#
+# Format, sources autorisées, règles d'interprétation et cycle de vie :
+# docs/regle-table-securite.md (v1.0).
+#
+# ⚠️ Aucune valeur de ce fichier ne doit provenir d'un LLM, de la mémoire ou d'un site
+# non listé (règle P3). Chaque entrée est saisie depuis Essential Oil Safety
+# (Tisserand & Young, 2e éd.), avec page et citation exacte, puis vérifiée et validée
+# avec les commandes `agent-he securite verifier` et `agent-he securite valider`.
+#
+# Tant que ce fichier est vide, l'outil ne propose aucun dosage (fail closed, règle P4).
+[]

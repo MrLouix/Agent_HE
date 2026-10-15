@@ -1,0 +1,23 @@
+# Domaines et niveaux de confiance (spécification §4).
+# Un domaine couvre aussi ses sous-domaines (ex. ema.europa.eu couvre www.ema.europa.eu).
+# Tout domaine absent de cette liste est « non_verifie » : jamais utilisé seul.
+
+institutionnel:
+  - ansm.sante.fr
+  - anses.fr
+  - ema.europa.eu
+  - nccih.nih.gov
+  - pubmed.ncbi.nlm.nih.gov
+  - ncbi.nlm.nih.gov
+
+reference_securite:
+  - tisserandinstitute.org
+  - roberttisserand.com
+
+commercial:
+  - compagnie-des-sens.fr
+  - aroma-zone.com
+  - comptoirdeshuiles.com
+  - puressentiel.com
+
+non_verifie: []
