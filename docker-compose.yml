@@ -1,0 +1,46 @@
+# Hébergement personnel : voir la section « Hébergement » du README.
+#
+#   docker compose up -d                    # appli seule, sur 127.0.0.1:8501 (ou APP_BIND)
+#   docker compose --profile web up -d      # + Caddy : HTTPS et mot de passe sur DOMAINE
+
+services:
+  agent-he:
+    build: .
+    image: agent-he:latest
+    restart: unless-stopped
+    # Les clés d'API et réglages AGENT_HE_* sont lus depuis .env (jamais dans l'image).
+    env_file: .env
+    # Même propriétaire que le dossier data/ de l'hôte, pour pouvoir y écrire.
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      # Données de référence versionnées + base SQLite (journal, historique, favoris,
+      # file de validation, audit) + index Chroma : tout reste sur l'hôte.
+      - ./data:/app/data
+    ports:
+      # Par défaut, accessible uniquement depuis le serveur lui-même. Pour Tailscale,
+      # mettre APP_BIND=<adresse Tailscale du serveur> dans .env.
+      - "${APP_BIND:-127.0.0.1}:8501:8501"
+
+  caddy:
+    image: caddy:2
+    profiles: ["web"]
+    restart: unless-stopped
+    depends_on:
+      agent-he:
+        condition: service_healthy
+    environment:
+      # À renseigner dans .env pour le profil « web » (voir .env.example).
+      DOMAINE: ${DOMAINE:-}
+      AUTH_UTILISATEUR: ${AUTH_UTILISATEUR:-}
+      AUTH_HASH: ${AUTH_HASH:-}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

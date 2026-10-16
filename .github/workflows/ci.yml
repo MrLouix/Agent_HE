@@ -29,3 +29,27 @@ jobs:
 
       - name: Tests
         run: uv run pytest
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configuration Compose
+        run: |
+          cp .env.example .env
+          docker compose config -q
+          docker compose --profile web config -q
+
+      - name: Construction de l'image
+        run: docker build -t agent-he:ci .
+
+      - name: Démarrage et santé
+        run: |
+          docker run -d --name agent-he -p 8501:8501 agent-he:ci
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:8501/_stcore/health && exit 0
+            sleep 2
+          done
+          docker logs agent-he
+          exit 1

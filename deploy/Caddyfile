@@ -1,0 +1,10 @@
+# Reverse proxy : HTTPS automatique (Let's Encrypt) et mot de passe devant Streamlit,
+# qui n'a pas d'authentification intégrée.
+{$DOMAINE} {
+	basic_auth {
+		{$AUTH_UTILISATEUR} {$AUTH_HASH}
+	}
+	encode gzip
+	# Streamlit utilise des WebSockets, gérés nativement par reverse_proxy.
+	reverse_proxy agent-he:8501
+}

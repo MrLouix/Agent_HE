@@ -58,3 +58,50 @@ uv run agent-he corpus candidates          # recettes web en attente de relectur
 uv run agent-he corpus valider <id> --besoin sommeil
 uv run agent-he corpus rejeter <id> --motif "<raison>"
 ```
+
+## Hébergement
+
+L'outil est personnel et sans comptes : il ne doit jamais être ouvert publiquement sans
+protection (le journal d'usage contient des données de santé). Toutes les données restent
+dans `data/` (référentiel, table de sécurité, corpus, base SQLite, index Chroma), monté
+depuis l'hôte : **sauvegarde ce dossier**.
+
+### Sur ta machine
+
+```bash
+uv run streamlit run app/streamlit_app.py      # http://localhost:8501
+```
+
+Pour y accéder depuis ton téléphone sans rien exposer : installe
+[Tailscale](https://tailscale.com) sur les deux appareils et ouvre
+`http://<nom-de-la-machine>:8501`.
+
+### Sur un serveur, avec Docker
+
+Prérequis : Docker avec le plugin Compose, et un clone du dépôt sur le serveur.
+
+```bash
+cp .env.example .env            # clés d'API ; UID/GID = `id -u` / `id -g`
+docker compose up -d --build    # appli sur 127.0.0.1:8501 (APP_BIND pour une autre adresse)
+docker compose logs -f agent-he
+```
+
+- **Accès via Tailscale (recommandé)** : `APP_BIND=<adresse Tailscale du serveur>` dans
+  `.env`, puis `docker compose up -d`. Rien n'est exposé sur Internet.
+- **Accès par un nom de domaine** (HTTPS automatique et mot de passe, via Caddy) : faire
+  pointer le domaine vers le serveur, ouvrir les ports 80 et 443, puis :
+
+  ```bash
+  docker compose run --rm caddy caddy hash-password     # saisir le mot de passe
+  # dans .env : DOMAINE=…, AUTH_UTILISATEUR=…, AUTH_HASH='<empreinte>' (avec les apostrophes)
+  docker compose --profile web up -d
+  ```
+
+Les commandes de la CLI s'exécutent dans le conteneur, sur les mêmes données :
+
+```bash
+docker compose exec agent-he agent-he securite controler
+docker compose exec agent-he agent-he corpus reindex
+```
+
+Mise à jour : `git pull && docker compose up -d --build`.
