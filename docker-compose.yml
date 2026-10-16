@@ -22,7 +22,7 @@ services:
       - "${APP_BIND:-127.0.0.1}:8501:8501"
 
   caddy:
-    image: caddy:2
+    image: ${IMAGE_CADDY:-caddy:2}
     profiles: ["web"]
     restart: unless-stopped
     depends_on:
