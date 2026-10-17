@@ -457,7 +457,6 @@ def onglet_journal(svc: Services) -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="Agent HE", page_icon=":material/spa:", layout="wide")
     st.title("Agent huiles essentielles", icon=":material/spa:")
     st.warning(BANDEAU.removeprefix("⚠️").strip(), icon=":material/health_and_safety:")
     svc = services()

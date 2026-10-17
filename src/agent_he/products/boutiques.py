@@ -15,6 +15,7 @@ class Boutique(Modele):
     nom: TexteNonVide
     url: HttpUrl
     acces: Literal["api", "flux", "scraping"]
+    url_cgu: HttpUrl | None = None
     cgu_verifiees: bool = False
     cgu_verifiees_le: date | None = None
     delai_s: float = Field(default=5, ge=1)

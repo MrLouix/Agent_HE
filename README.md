@@ -46,6 +46,23 @@ uv run agent-he securite valider SEC-0001
 uv run agent-he securite rapport                      # docs/audit/securite-<date>.md
 ```
 
+## Administration
+
+Le menu **Administration** de l'interface édite les deux fichiers de configuration :
+
+- **Boutiques (CGU)** — `data/boutiques.yaml` : liens vers le site, les CGU et le
+  robots.txt de chaque boutique ; saisie de la page des CGU, de leur vérification (datée),
+  du délai entre requêtes, de l'URL de recherche et du motif des liens produit. L'identifiant,
+  le nom, l'URL, l'accès et l'extraction restent en lecture seule.
+- **Table de sécurité** — `data/securite.yaml` : contrôles §9, création et correction des
+  entrées (identifiant attribué automatiquement), puis vérification, validation ou retrait.
+  Les champs de suivi et les empreintes sont en lecture seule ; modifier un champ de fond
+  d'une entrée vérifiée ou validée la ramène en brouillon.
+
+Chaque enregistrement est validé avant écriture et conserve les commentaires de tête du
+fichier. En hébergement, ces pages écrivent dans le dossier `data/` monté depuis l'hôte :
+penser à committer ces fichiers pour garder la traçabilité (règle P6).
+
 ## Utilisation
 
 ```bash

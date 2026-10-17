@@ -1,11 +1,13 @@
 # Boutiques spécialisées en HE (spécification §13).
 #
 # ⚠️ Avant d'activer une boutique : lire ses CGU et son robots.txt, puis renseigner
-# `cgu_verifiees: true` et `cgu_verifiees_le`. Le scraper refuse toute boutique dont les
-# CGU ne sont pas marquées comme vérifiées, et respecte toujours robots.txt.
+# `cgu_verifiees: true` et `cgu_verifiees_le` (ici ou depuis la page d'administration
+# de l'interface). Le scraper refuse toute boutique dont les CGU ne sont pas marquées
+# comme vérifiées, et respecte toujours robots.txt.
 #
 # Champs :
 #   acces               api | flux | scraping
+#   url_cgu             page des CGU lue pour la vérification
 #   delai_s             délai minimal entre deux requêtes vers ce domaine
 #   url_recherche       URL de recherche avec {q} (ex. https://…/recherche?q={q}), à renseigner
 #   motif_lien_produit  expression régulière des liens produit dans la page de recherche
@@ -15,6 +17,7 @@
   nom: Aroma-Zone
   url: https://www.aroma-zone.com
   acces: scraping
+  url_cgu: null
   cgu_verifiees: false
   cgu_verifiees_le: null
   delai_s: 5
@@ -26,6 +29,7 @@
   nom: Comptoir des Huiles
   url: https://www.comptoirdeshuiles.com
   acces: scraping
+  url_cgu: null
   cgu_verifiees: false
   cgu_verifiees_le: null
   delai_s: 5
@@ -37,6 +41,7 @@
   nom: Compagnie des Sens
   url: https://www.compagnie-des-sens.fr
   acces: scraping
+  url_cgu: null
   cgu_verifiees: false
   cgu_verifiees_le: null
   delai_s: 5
@@ -48,6 +53,7 @@
   nom: Puressentiel
   url: https://www.puressentiel.com
   acces: scraping
+  url_cgu: null
   cgu_verifiees: false
   cgu_verifiees_le: null
   delai_s: 5
