@@ -24,6 +24,7 @@ RUN uv sync --locked --no-dev --no-install-project
 
 COPY src ./src
 COPY app ./app
+COPY .streamlit ./.streamlit
 RUN uv sync --locked --no-dev
 
 # Données de référence par défaut ; en production, data/ est monté depuis l'hôte

@@ -58,7 +58,7 @@ def remplir(
     **cases: bool,
 ) -> AppTest:
     at.text_input(key="besoin").input(besoin)
-    at.multiselect(key="voies").select(Voie.CUTANEE)
+    at.pills(key="voies").select(Voie.CUTANEE)
     if age is not None:
         at.selectbox(key="age").select(age)
     for cle, valeur in cases.items():
@@ -114,8 +114,8 @@ def test_avertissement_visible_en_synthese() -> None:
 def test_refus_explicatif_grossesse() -> None:
     at = rechercher(remplir(app(services(web.URL_SOMMEIL)), grossesse_allaitement=True))
     assert not at.exception
+    assert any(e.proto.title == "Aucun dosage proposé" for e in at.error)
     erreurs = " ".join(e.value for e in at.error)
-    assert "Aucun dosage proposé" in erreurs
     assert "Grossesse" in erreurs
     assert "sauge_officinale" in textes(at)
     assert any("professionnel" in i.value for i in at.info)
@@ -141,13 +141,13 @@ def test_cle_api_absente_message_clair() -> None:
 @pytest.mark.parametrize("onglet", ["Historique", "Favoris", "File de validation"])
 def test_onglets_presents(onglet: str) -> None:
     at = app(services())
-    assert onglet in [t.label for t in at.tabs]
+    assert any(t.label.endswith(onglet) for t in at.tabs)
 
 
 def test_j_ai_utilise_cette_recette() -> None:
     svc = services(web.URL_SOMMEIL)
     at = rechercher(remplir(app(svc)))
-    at.radio(key="tol-fiche").set_value("legere")
+    at.segmented_control(key="tol-fiche").set_value("legere")
     at.text_input(key="reac-fiche").input("rougeurs")
     at = at.button(key="FormSubmitter:usage-fiche-Enregistrer le retour").click().run()
     assert not at.exception
@@ -169,7 +169,7 @@ def test_proposition_puis_confirmation_d_exclusion() -> None:
     assert svc.journal.exclusions() == {}
     at = at.button(key="exclure-cannelle_ecorce").click().run()
     assert "cannelle_ecorce" in svc.journal.exclusions()
-    assert any("🚫" in m.value for m in at.markdown)
+    assert any(":material/block: **Cannelle de Ceylan**" in m.value for m in at.markdown)
 
 
 def test_onglet_produits_sans_boutique_active() -> None:

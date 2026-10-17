@@ -1,0 +1,42 @@
+# Thème de l'interface (lu depuis le dossier où l'on lance `streamlit run`).
+# Clair et sombre restent disponibles dans les réglages de l'application.
+
+[theme]
+baseRadius = "0.6rem"
+showWidgetBorder = true
+showSidebarBorder = true
+linkUnderline = false
+
+[theme.light]
+primaryColor = "#2f6b4f"
+backgroundColor = "#fbfaf6"
+secondaryBackgroundColor = "#eef2ec"
+textColor = "#1f2a24"
+borderColor = "#d6ddd3"
+linkColor = "#2f6b4f"
+codeBackgroundColor = "#eef2ec"
+
+[theme.dark]
+primaryColor = "#367a5a"
+backgroundColor = "#111814"
+secondaryBackgroundColor = "#1a241e"
+textColor = "#e6ece7"
+borderColor = "#2c3a31"
+linkColor = "#7cc7a0"
+codeBackgroundColor = "#1a241e"
+
+[theme.light.sidebar]
+backgroundColor = "#eef2ec"
+secondaryBackgroundColor = "#e2e9e0"
+textColor = "#1f2a24"
+borderColor = "#d6ddd3"
+primaryColor = "#2f6b4f"
+linkColor = "#2f6b4f"
+
+[theme.dark.sidebar]
+backgroundColor = "#0c120f"
+secondaryBackgroundColor = "#1a241e"
+textColor = "#e6ece7"
+borderColor = "#2c3a31"
+primaryColor = "#367a5a"
+linkColor = "#7cc7a0"
