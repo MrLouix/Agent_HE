@@ -58,12 +58,13 @@ def test_page_boutiques_enregistre_les_cgu(dossier: Path) -> None:
 
 
 def test_page_boutiques_refuse_une_saisie_invalide(dossier: Path) -> None:
+    avant = (dossier / "boutiques.yaml").read_text(encoding="utf-8")
     at = page(dossier, "boutiques.py")
     widget(at.text_input, "URL de recherche").input("https://www.aroma-zone.com/s")
     widget(at.button, "Enregistrer").click()
     at.run()
     assert "{q}" in at.error[0].value
-    assert lire_boutiques(dossier)[0].url_recherche is None
+    assert (dossier / "boutiques.yaml").read_text(encoding="utf-8") == avant
 
 
 def test_page_securite_cree_une_entree(dossier: Path) -> None:

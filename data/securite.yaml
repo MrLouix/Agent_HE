@@ -9,4 +9,4940 @@
 # avec les commandes `agent-he securite verifier` et `agent-he securite valider`.
 #
 # Tant que ce fichier est vide, l'outil ne propose aucun dosage (fail closed, règle P4).
-[]
+- id: SEC-0001
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, Community herbal monograph on Lavandula angustifolia Miller, aetheroleum, EMA/HMPC/143181/2010
+      — https://www.ema.europa.eu/en/documents/herbal-monograph/final-community-herbal-monograph-lavandula-angustifolia-miller-aetheroleum_en.pdf
+    page: 4
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0002
+  type: interdit_profil
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, Community herbal monograph on Syzygium aromaticum (L.) Merill et L. M. Perry, floris
+      aetheroleum, EMA/HMPC/534924/2010 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-community-herbal-monograph-syzygium-aromaticum-l-merill-et-l-m-perry-floris-aetheroleum_en.pdf
+    page: 5
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0003
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Eucalyptus globulus Labill.; Eucalyptus polybractea
+      R.T. Baker; Eucalyptus smithii R.T. Baker, aetheroleum (Rev. 1), EMA/HMPC/320292/2023 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-eucalyptus-globulus-labill-eucalyptus-polybractea-rt-baker-eucalyptus-smithii-rt-baker-aetheroleum-revision-1_en.pdf
+    page: 9
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0004
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Melaleuca alternifolia (Maiden and Betch) Cheel,
+      M. linariifolia Smith, M. dissitiflora F. Mueller and/or other species of Melaleuca, aetheroleum,
+      EMA/HMPC/320930/2012 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-melaleuca-alternifolia-maiden-and-betch-cheel-m-linariifolia-smith-m-dissitiflora-f-mueller-and-or-other-species-melaleuca-aetheroleum-first-version_en.pdf
+    page: 6
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0005
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Mentha x piperita L., aetheroleum (Rev. 1),
+      EMA/HMPC/522410/2013 — https://www.ema.europa.eu/en/documents/herbal-monograph/european-union-herbal-monograph-mentha-x-piperita-l-aetheroleum-revision-1_en.pdf
+    page: 8
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0006
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Rosmarinus officinalis L., aetheroleum (Rev.
+      1), EMA/HMPC/513893/2021 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-rosmarinus-officinalis-l-aetheroleum-revision-1_en.pdf
+    page: 5
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0007
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Rosmarinus officinalis L., aetheroleum (Rev.
+      1), EMA/HMPC/513893/2021 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-rosmarinus-officinalis-l-aetheroleum-revision-1_en.pdf
+    page: 5
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0008
+  type: interdit_profil
+  he_id: romarin_verbenone
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Rosmarinus officinalis L., aetheroleum (Rev.
+      1), EMA/HMPC/513893/2021 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-rosmarinus-officinalis-l-aetheroleum-revision-1_en.pdf
+    page: 5
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0009
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 6
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0010
+  type: interdit_profil
+  he_id: thym_linalol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Grossesse et allaitement : usage non recommandé (données insuffisantes).'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 6
+    localisation: 4.6. Fertility, pregnancy and lactation
+    citation: Safety during pregnancy and lactation has not been established. In the absence of sufficient
+      data, the use during pregnancy and lactation is not recommended.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0011
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: Contre-indiqué avant 2 ans (apnée réflexe, laryngospasme dus au menthol).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Mentha x piperita L., aetheroleum (Rev. 1),
+      EMA/HMPC/522410/2013 — https://www.ema.europa.eu/en/documents/herbal-monograph/european-union-herbal-monograph-mentha-x-piperita-l-aetheroleum-revision-1_en.pdf
+    page: 6
+    localisation: 4.3. Contraindications (Traditional use, indication 1, 2 and 3)
+    citation: Children under 2 years of age, because menthol can induce reflex apnoea and laryngospasm.
+  interpretation: 'R9 : « contraindicated ». Population citée : moins de 2 ans ; aucune tranche du référentiel
+    ne lui correspond exactement, la tranche moins_3 (qui la contient) est retenue, ce qui élargit la
+    restriction. Cas non couvert par R1–R13 : voir §10 Q2.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0012
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: Enfants ayant des antécédents de convulsions (fébriles ou non).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Mentha x piperita L., aetheroleum (Rev. 1),
+      EMA/HMPC/522410/2013 — https://www.ema.europa.eu/en/documents/herbal-monograph/european-union-herbal-monograph-mentha-x-piperita-l-aetheroleum-revision-1_en.pdf
+    page: 6
+    localisation: 4.3. Contraindications (Traditional use, indication 1, 2 and 3)
+    citation: Children with history of seizures (febrile or not).
+  interpretation: 'R9 : « contraindicated ». La source vise les enfants ; le profil epilepsie s''applique
+    à tout âge (restriction élargie).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0013
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: Contre-indiqué avant 24 mois (risque de laryngospasme lié au 1,8-cinéole).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Eucalyptus globulus Labill.; Eucalyptus polybractea
+      R.T. Baker; Eucalyptus smithii R.T. Baker, aetheroleum (Rev. 1), EMA/HMPC/320292/2023 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-eucalyptus-globulus-labill-eucalyptus-polybractea-rt-baker-eucalyptus-smithii-rt-baker-aetheroleum-revision-1_en.pdf
+    page: 7
+    localisation: 4.3. Contraindications
+    citation: Children under 24 months of age, because there is a risk that 1,8-cineole containing preparations,
+      like other essential oils, can induce laryngospasm.
+  interpretation: 'R9 : « contraindicated ». Population citée : moins de 2 ans ; aucune tranche du référentiel
+    ne lui correspond exactement, la tranche moins_3 (qui la contient) est retenue, ce qui élargit la
+    restriction. Cas non couvert par R1–R13 : voir §10 Q2.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0014
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: Enfants ayant des antécédents de convulsions (fébriles ou non).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Eucalyptus globulus Labill.; Eucalyptus polybractea
+      R.T. Baker; Eucalyptus smithii R.T. Baker, aetheroleum (Rev. 1), EMA/HMPC/320292/2023 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-eucalyptus-globulus-labill-eucalyptus-polybractea-rt-baker-eucalyptus-smithii-rt-baker-aetheroleum-revision-1_en.pdf
+    page: 7
+    localisation: 4.3. Contraindications
+    citation: Children with history of seizures (febrile or not).
+  interpretation: 'R9 : « contraindicated ». La source vise les enfants ; le profil epilepsie s''applique
+    à tout âge (restriction élargie).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0015
+  type: drapeau
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: Allergie croisée au baume du Pérou.
+  source:
+    ouvrage: EMA/HMPC, Community herbal monograph on Syzygium aromaticum (L.) Merill et L. M. Perry, floris
+      aetheroleum, EMA/HMPC/534924/2010 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-community-herbal-monograph-syzygium-aromaticum-l-merill-et-l-m-perry-floris-aetheroleum_en.pdf
+    page: 4
+    localisation: 4.3. Contraindications
+    citation: Hypersensitivity to the active substance(s) or to Peru balsam.
+  interpretation: null
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0016
+  type: drapeau
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: Allergie croisée à la colophane.
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Melaleuca alternifolia (Maiden and Betch) Cheel,
+      M. linariifolia Smith, M. dissitiflora F. Mueller and/or other species of Melaleuca, aetheroleum,
+      EMA/HMPC/320930/2012 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-melaleuca-alternifolia-maiden-and-betch-cheel-m-linariifolia-smith-m-dissitiflora-f-mueller-and-or-other-species-melaleuca-aetheroleum-first-version_en.pdf
+    page: 5
+    localisation: 4.3. Contraindications
+    citation: Hypersensitivity to the active substance or to colophony.
+  interpretation: null
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0017
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Ne pas appliquer sur le visage (zone nasale) avant 2 ans : risque de laryngospasme.'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 6
+    localisation: 4.4. Special warnings and precautions for use (Indication 2, cutaneous use)
+    citation: Thyme oil should not be applied to the face particularly in the nasal area of babies and
+      infants under the age of 2 years because of the risk of a laryngospasm.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « should not be applied ». Population citée : moins de 2 ans
+    ; aucune tranche du référentiel ne lui correspond exactement, la tranche moins_3 (qui la contient)
+    est retenue, ce qui élargit la restriction. Cas non couvert par R1–R13 : voir §10 Q2.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0018
+  type: interdit_profil
+  he_id: thym_linalol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Ne pas appliquer sur le visage (zone nasale) avant 2 ans : risque de laryngospasme.'
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 6
+    localisation: 4.4. Special warnings and precautions for use (Indication 2, cutaneous use)
+    citation: Thyme oil should not be applied to the face particularly in the nasal area of babies and
+      infants under the age of 2 years because of the risk of a laryngospasm.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « should not be applied ». Population citée : moins de 2 ans
+    ; aucune tranche du référentiel ne lui correspond exactement, la tranche moins_3 (qui la contient)
+    est retenue, ce qui élargit la restriction. Cas non couvert par R1–R13 : voir §10 Q2.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0019
+  type: interdit_profil
+  he_id: thym_linalol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: Usage cutané non recommandé avant 18 ans (données insuffisantes).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 5
+    localisation: 4.4. Special warnings and precautions for use (Indication 2, cutaneous use)
+    citation: The use in children and adolescents under 18 years of age is not recommended due to lack
+      of adequate data.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé). Une entrée par tranche d''âge (P1). Pour thym_thymol, voir les entrées ANSM.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0020
+  type: interdit_profil
+  he_id: thym_linalol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: Usage cutané non recommandé avant 18 ans (données insuffisantes).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 5
+    localisation: 4.4. Special warnings and precautions for use (Indication 2, cutaneous use)
+    citation: The use in children and adolescents under 18 years of age is not recommended due to lack
+      of adequate data.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé). Une entrée par tranche d''âge (P1). Pour thym_thymol, voir les entrées ANSM.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0021
+  type: interdit_profil
+  he_id: thym_linalol
+  nom_latin: Thymus vulgaris
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: Usage cutané non recommandé avant 18 ans (données insuffisantes).
+  source:
+    ouvrage: EMA/HMPC, European Union herbal monograph on Thymus vulgaris L. and Thymus zygis L., aetheroleum
+      (Rev. 1), EMA/HMPC/59032/2017 — https://www.ema.europa.eu/en/documents/herbal-monograph/final-european-union-herbal-monograph-thymus-vulgaris-l-thymus-zygis-l-aetheroleum-revision-1_en.pdf
+    page: 5
+    localisation: 4.4. Special warnings and precautions for use (Indication 2, cutaneous use)
+    citation: The use in children and adolescents under 18 years of age is not recommended due to lack
+      of adequate data.
+  interpretation: 'R4 : la monographie ne cite pas de chémotype (espèce entière) ; entrée dupliquée pour
+    chaque chémotype du référentiel. R9 : « not recommended » ⇒ interdit_profil (prudence ⇒ refus de dosage
+    automatisé). Une entrée par tranche d''âge (P1). Pour thym_thymol, voir les entrées ANSM.'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0022
+  type: interdit_profil
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. R9 : « ne
+    doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0023
+  type: interdit_profil
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0024
+  type: interdit_profil
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0025
+  type: interdit_profil
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0026
+  type: interdit_profil
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0027
+  type: drapeau
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : 1,8-cinéole.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « 1,8-cinéole » (HE listée)
+    citation: 1,8-cinéole (eucalyptol) Neurotoxicité
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0028
+  type: interdit_profil
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (1,8-cinéole, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. R9 : « ne
+    doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0029
+  type: drapeau
+  he_id: lavande_aspic
+  nom_latin: Lavandula latifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : linalol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Linalol » (HE listée)
+    citation: Linalol Allergie
+  interpretation: 'HE de l''annexe I : Aspic (Lavandula latifolia Medik.), sommité fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0030
+  type: interdit_profil
+  he_id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Cannelier de Ceylan (Cinnamomum verum J.L. Presl.), écorce. R9
+    : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0031
+  type: interdit_profil
+  he_id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Cannelier de Ceylan (Cinnamomum verum J.L. Presl.), écorce. R9.
+    « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0032
+  type: interdit_profil
+  he_id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Cannelier de Ceylan (Cinnamomum verum J.L. Presl.), écorce. R9.
+    « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0033
+  type: interdit_profil
+  he_id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Cannelier de Ceylan (Cinnamomum verum J.L. Presl.), écorce. R9.
+    « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0034
+  type: interdit_profil
+  he_id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Cannelier de Ceylan (Cinnamomum verum J.L. Presl.), écorce. R9.
+    « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0035
+  type: drapeau
+  he_id: cannelle_ecorce
+  nom_latin: Cinnamomum verum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : aldéhyde cinnamique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Aldéhyde cinnamique » (HE listée)
+    citation: Aldéhyde cinnamique Allergie
+  interpretation: 'HE de l''annexe I : Cannelier de Ceylan (Cinnamomum verum J.L. Presl.), écorce. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0036
+  type: interdit_profil
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. R9 : « ne doivent
+    pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0037
+  type: interdit_profil
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0038
+  type: interdit_profil
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0039
+  type: interdit_profil
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0040
+  type: interdit_profil
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0041
+  type: drapeau
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : pinènes.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Pinènes » (HE listée)
+    citation: Pinènes Neurotoxicité
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0042
+  type: interdit_profil
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (pinènes, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. R9 : « ne doivent
+    pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0043
+  type: drapeau
+  he_id: citron
+  nom_latin: Citrus limon
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : limonène.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Limonène » (HE listée)
+    citation: Limonène Allergie
+  interpretation: 'HE de l''annexe I : Citron (Citrus limon (L.) Burm.f.), péricarpe. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0044
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale.
+    R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0045
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0046
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0047
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0048
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0049
+  type: drapeau
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : 1,8-cinéole.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « 1,8-cinéole » (HE listée)
+    citation: 1,8-cinéole (eucalyptol) Neurotoxicité
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0050
+  type: interdit_profil
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (1,8-cinéole, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale.
+    R9 : « ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0051
+  type: drapeau
+  he_id: eucalyptus_globuleux
+  nom_latin: Eucalyptus globulus
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : limonène.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Limonène » (HE listée)
+    citation: Limonène Allergie
+  interpretation: 'HE de l''annexe I : Eucalyptus (Eucalyptus globulus Labill., …), feuille, tige terminale. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0052
+  type: interdit_profil
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Giroflier (Syzygium aromaticum …), clou. R9 : « ne doivent pas
+    être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0053
+  type: interdit_profil
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Giroflier (Syzygium aromaticum …), clou. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0054
+  type: interdit_profil
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Giroflier (Syzygium aromaticum …), clou. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0055
+  type: interdit_profil
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Giroflier (Syzygium aromaticum …), clou. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0056
+  type: interdit_profil
+  he_id: girofle
+  nom_latin: Syzygium aromaticum
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Giroflier (Syzygium aromaticum …), clou. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0057
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. R9 : «
+    ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0058
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. R9. «
+    Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0059
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. R9. «
+    Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0060
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. R9. «
+    Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0061
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. R9. «
+    Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0062
+  type: drapeau
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : terpinène-4-ol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Terpinène-4-ol » (HE listée)
+    citation: Terpinène-4-ol Neurotoxicité
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0063
+  type: interdit_profil
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (terpinène-4-ol, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. R9 : «
+    ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0064
+  type: drapeau
+  he_id: lavande_vraie
+  nom_latin: Lavandula angustifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : linalol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Linalol » (HE listée)
+    citation: Linalol Allergie
+  interpretation: 'HE de l''annexe I : Lavande (Lavandula angustifolia Mill.), sommité fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0065
+  type: interdit_profil
+  he_id: mandarine
+  nom_latin: Citrus reticulata
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Mandarine (Citrus reticulata Blanco), zeste. R9 : « ne doivent
+    pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0066
+  type: interdit_profil
+  he_id: mandarine
+  nom_latin: Citrus reticulata
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Mandarine (Citrus reticulata Blanco), zeste. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0067
+  type: interdit_profil
+  he_id: mandarine
+  nom_latin: Citrus reticulata
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Mandarine (Citrus reticulata Blanco), zeste. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0068
+  type: interdit_profil
+  he_id: mandarine
+  nom_latin: Citrus reticulata
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Mandarine (Citrus reticulata Blanco), zeste. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0069
+  type: interdit_profil
+  he_id: mandarine
+  nom_latin: Citrus reticulata
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Mandarine (Citrus reticulata Blanco), zeste. R9. « Population pédiatrique
+    » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0070
+  type: drapeau
+  he_id: mandarine
+  nom_latin: Citrus reticulata
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : limonène.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Limonène » (HE listée)
+    citation: Limonène Allergie
+  interpretation: 'HE de l''annexe I : Mandarine (Citrus reticulata Blanco), zeste. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0071
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0072
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0073
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0074
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0075
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0076
+  type: drapeau
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : 1,8-cinéole.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « 1,8-cinéole » (HE listée)
+    citation: 1,8-cinéole (eucalyptol) Neurotoxicité
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0077
+  type: interdit_profil
+  he_id: tea_tree
+  nom_latin: Melaleuca alternifolia
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (1,8-cinéole, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Melaleuca dit « arbre à thé » (Melaleuca alternifolia …), feuille,
+    tige terminale. R9 : « ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0078
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie.
+    R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0079
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0080
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0081
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0082
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0083
+  type: drapeau
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : menthol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Menthol » (HE listée)
+    citation: Menthol Irritation cutanée Neurotoxicité
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0084
+  type: interdit_profil
+  he_id: menthe_poivree
+  nom_latin: Mentha x piperita
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (menthol, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Menthe poivrée (Mentha × piperita L.), partie aérienne fleurie.
+    R9 : « ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0085
+  type: interdit_profil
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. R9 : « ne doivent
+    pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0086
+  type: interdit_profil
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0087
+  type: interdit_profil
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0088
+  type: interdit_profil
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0089
+  type: interdit_profil
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0090
+  type: drapeau
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : pinènes.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Pinènes » (HE listée)
+    citation: Pinènes Neurotoxicité
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0091
+  type: interdit_profil
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (pinènes, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. R9 : « ne doivent
+    pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0092
+  type: drapeau
+  he_id: orange_douce
+  nom_latin: Citrus sinensis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : limonène.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Limonène » (HE listée)
+    citation: Limonène Allergie
+  interpretation: 'HE de l''annexe I : Orange douce (Citrus sinensis (L.) Osbeck.), zeste. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0093
+  type: interdit_profil
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0094
+  type: interdit_profil
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0095
+  type: interdit_profil
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0096
+  type: interdit_profil
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0097
+  type: interdit_profil
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0098
+  type: drapeau
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : pinènes.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Pinènes » (HE listée)
+    citation: Pinènes Neurotoxicité
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0099
+  type: interdit_profil
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (pinènes, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. R9 : « ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0100
+  type: drapeau
+  he_id: neroli
+  nom_latin: Citrus aurantium
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : linalol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Linalol » (HE listée)
+    citation: Linalol Allergie
+  interpretation: 'HE de l''annexe I : Oranger amer (dit « néroli ») (Citrus aurantium L. subsp. aurantium),
+    fleur. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0101
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0102
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans :
+    une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0103
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans :
+    une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0104
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans :
+    une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0105
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans :
+    une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0106
+  type: drapeau
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : 1,8-cinéole.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « 1,8-cinéole » (HE listée)
+    citation: 1,8-cinéole (eucalyptol) Neurotoxicité
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0107
+  type: interdit_profil
+  he_id: romarin_cineole
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (1,8-cinéole, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Maroc-Tunisie (Rosmarinus officinalis L.). R9 : « ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0108
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0109
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans : une entrée
+    par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0110
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans : une entrée
+    par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0111
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans : une entrée
+    par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0112
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). R9. « Population pédiatrique » = moins de 18 ans : une entrée
+    par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0113
+  type: drapeau
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: neurotoxique
+  profil: null
+  detail: 'Constituant à risque neurotoxique : camphre.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Camphre » (HE listée)
+    citation: Camphre Neurotoxicité
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0114
+  type: interdit_profil
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: epilepsie
+  detail: 'Contient un dérivé terpénique neurotoxique (camphre, annexe IV) : antécédents de convulsions
+    ou d''épilepsie.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Mises en garde, Neurotoxicité
+    citation: Les huiles essentielles contenant certains dérivés terpéniques (camphre, eucalyptol, menthol,
+      pinènes, terpinène-4-ol) ont été associées à des effets indésirables neurologiques graves (convulsions,
+      somnolence, agitation) en particulier chez l’enfant. Elles ne doivent pas être utilisées dans la
+      population pédiatrique et chez les adultes ayant des antécédents de convulsions ou d’épilepsie.
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). R9 : « ne doivent pas être utilisées ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0115
+  type: drapeau
+  he_id: romarin_camphre
+  nom_latin: Rosmarinus officinalis
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : limonène.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 9
+    localisation: Annexe IV, ligne « Limonène » (HE listée)
+    citation: Limonène Allergie
+  interpretation: 'Rapprochement « type Maroc-Tunisie » ⇒ romarin_cineole et « type Espagne » ⇒ romarin_camphre
+    d''après les teneurs de l''annexe III (R4, à confirmer à la vérification). HE de l''annexe I : Romarin
+    type Espagne (Rosmarinus officinalis L.). '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0116
+  type: interdit_profil
+  he_id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Sauge sclarée (Salvia sclarea L.), tige fleurie. R9 : « ne doivent
+    pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0117
+  type: interdit_profil
+  he_id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Sauge sclarée (Salvia sclarea L.), tige fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0118
+  type: interdit_profil
+  he_id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Sauge sclarée (Salvia sclarea L.), tige fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0119
+  type: interdit_profil
+  he_id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Sauge sclarée (Salvia sclarea L.), tige fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0120
+  type: interdit_profil
+  he_id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Sauge sclarée (Salvia sclarea L.), tige fleurie. R9. « Population
+    pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0121
+  type: drapeau
+  he_id: sauge_sclaree
+  nom_latin: Salvia sclarea
+  chemotype: null
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : linalol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Linalol » (HE listée)
+    citation: Linalol Allergie
+  interpretation: 'HE de l''annexe I : Sauge sclarée (Salvia sclarea L.), tige fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0122
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: thymol
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: grossesse_allaitement
+  detail: 'Mélanges pour application cutanée : contre-indiqués chez la femme enceinte (l''annexe V contre-indique
+    aussi l''allaitement).'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Grossesse
+    citation: La sécurité d’emploi pendant la grossesse n’a pas été établie pour les mélanges d’huiles
+      essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils ne doivent
+      pas être utilisés chez la femme enceinte.
+  interpretation: 'HE de l''annexe I : Thym type thymol (Thymus vulgaris L.), partie aérienne fleurie.
+    R9 : « ne doivent pas être utilisés ».'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0123
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: thymol
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: moins_3
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Thym type thymol (Thymus vulgaris L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0124
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: thymol
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_3_a_6
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Thym type thymol (Thymus vulgaris L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0125
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: thymol
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_6_a_12
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Thym type thymol (Thymus vulgaris L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0126
+  type: interdit_profil
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: thymol
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: null
+  profil: de_12_a_18
+  detail: 'Mélanges pour application cutanée : contre-indiqués dans la population pédiatrique.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 11
+    localisation: Annexe V, Contre-indications, Population pédiatrique
+    citation: La sécurité d’emploi pour la population pédiatrique n’a pas été établie pour les mélanges
+      d’huiles essentielles destinés à une application cutanée. En l’absence de données suffisantes, ils
+      ne doivent pas être utilisés dans la population pédiatrique.
+  interpretation: 'HE de l''annexe I : Thym type thymol (Thymus vulgaris L.), partie aérienne fleurie.
+    R9. « Population pédiatrique » = moins de 18 ans : une entrée par tranche d''âge (P1).'
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
+- id: SEC-0127
+  type: drapeau
+  he_id: thym_thymol
+  nom_latin: Thymus vulgaris
+  chemotype: thymol
+  voie: null
+  population: null
+  valeur: null
+  unite: null
+  base_pourcentage: null
+  drapeau: allergene
+  profil: null
+  detail: 'Constituant allergisant : thymol.'
+  source:
+    ouvrage: ANSM, Formulaire national 2023 — Mélanges d'huiles essentielles destinés à une application
+      cutanée (NTPP1282) — https://ansm.sante.fr/uploads/2022/12/30/formulaire-national-melange-he-voie-cutanee-ntpp1282-2023.pdf
+    page: 10
+    localisation: Annexe IV, ligne « Thymol » (HE listée)
+    citation: Thymol Allergie
+  interpretation: 'HE de l''annexe I : Thym type thymol (Thymus vulgaris L.), partie aérienne fleurie. '
+  saisie:
+    par: Claude (assistant IA)
+    le: '2026-10-18'
+    methode: assistee
+  verification:
+    par: null
+    le: null
+    resultat: null
+    commentaire: null
+    empreinte: null
+  validation:
+    par: null
+    le: null
+    empreinte: null
+  statut: brouillon
+  motif_retrait: null
