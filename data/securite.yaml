@@ -35,16 +35,16 @@
     le: '2026-10-18'
     methode: assistee
   verification:
-    par: null
-    le: null
-    resultat: null
+    par: moi
+    le: '2026-10-18'
+    resultat: conforme
     commentaire: null
-    empreinte: null
+    empreinte: bbc07475ce1d75960f6a0566a8b80b1ee08871b0be57af6f287f25f009274d0f
   validation:
     par: null
     le: null
     empreinte: null
-  statut: brouillon
+  statut: verifie
   motif_retrait: null
 - id: SEC-0002
   type: interdit_profil
@@ -72,16 +72,16 @@
     le: '2026-10-18'
     methode: assistee
   verification:
-    par: null
-    le: null
-    resultat: null
+    par: moi
+    le: '2026-10-18'
+    resultat: conforme
     commentaire: null
-    empreinte: null
+    empreinte: 047ebca5cfa09eac0a6bfe54dbdbc9bfc6407fd014a41b415737b7988f02ff7e
   validation:
     par: null
     le: null
     empreinte: null
-  statut: brouillon
+  statut: verifie
   motif_retrait: null
 - id: SEC-0003
   type: interdit_profil
@@ -109,16 +109,16 @@
     le: '2026-10-18'
     methode: assistee
   verification:
-    par: null
-    le: null
-    resultat: null
+    par: moi
+    le: '2026-10-18'
+    resultat: conforme
     commentaire: null
-    empreinte: null
+    empreinte: 611df6053440ba03878a026c8ea4c94480ad5234f0a7b678666ae18343f0c1ad
   validation:
     par: null
     le: null
     empreinte: null
-  statut: brouillon
+  statut: verifie
   motif_retrait: null
 - id: SEC-0004
   type: interdit_profil

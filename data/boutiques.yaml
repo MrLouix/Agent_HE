@@ -17,14 +17,13 @@
   nom: Aroma-Zone
   url: https://www.aroma-zone.com
   acces: scraping
-  url_cgu: null
+  url_cgu: https://www.aroma-zone.com/content/mentions-legales
   cgu_verifiees: false
   cgu_verifiees_le: null
-  delai_s: 5
-  url_recherche: null
-  motif_lien_produit: null
+  delai_s: 5.0
+  url_recherche: https://www.aroma-zone.com/search/{q}
+  motif_lien_produit: /produit?type=product&page=1
   extraction: jsonld
-
 - id: comptoir-des-huiles
   nom: Comptoir des Huiles
   url: https://www.comptoirdeshuiles.com
@@ -36,19 +35,17 @@
   url_recherche: null
   motif_lien_produit: null
   extraction: jsonld
-
 - id: compagnie-des-sens
   nom: Compagnie des Sens
   url: https://www.compagnie-des-sens.fr
   acces: scraping
-  url_cgu: null
+  url_cgu: https://www.compagnie-des-sens.fr/boutique/mentions-legales/
   cgu_verifiees: false
   cgu_verifiees_le: null
-  delai_s: 5
+  delai_s: 5.0
   url_recherche: null
   motif_lien_produit: null
   extraction: jsonld
-
 - id: puressentiel
   nom: Puressentiel
   url: https://www.puressentiel.com
